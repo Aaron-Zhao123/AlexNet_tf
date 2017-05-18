@@ -247,7 +247,7 @@ def main(argv = None):
             print('pruning thresholds are {}'.format(prune_thresholds))
         except getopt.error, msg:
             raise Usage(msg)
-        epochs = 100
+        epochs = 200
         dropout = 0.5
         batch_size = 128
         num_classes = 1000
@@ -320,10 +320,12 @@ def main(argv = None):
             # l2_norm = lambda_2 * l2
             # regulization_loss = l1_norm + l2_norm
 
-            opt = tf.train.AdamOptimizer(lr)
-            grads = opt.compute_gradients(loss)
-            org_grads = [(ClipIfNotNone(grad), var) for grad, var in grads]
-            train_step = opt.apply_gradients(org_grads)
+            # opt = tf.train.AdamOptimizer(lr)
+            # grads = opt.compute_gradients(loss)
+            # org_grads = [(ClipIfNotNone(grad), var) for grad, var in grads]
+            # train_step = opt.apply_gradients(org_grads)
+            train_step = tf.train.AdamOptimizer(learning_rate=lr).minimize(loss)
+
 
         with tf.name_scope("accuracy"):
             correct_prediction = tf.equal(tf.argmax(score,1), tf.argmax(y,1))
@@ -352,8 +354,8 @@ def main(argv = None):
 
         if (TRAIN):
             train_generator = ImageDataGenerator(train_file_txt,
-                                                 horizontal_flip = False, shuffle = True)
-            val_generator = ImageDataGenerator(val_file_txt, shuffle = False)
+                                                 horizontal_flip = True, shuffle = True)
+            val_generator = ImageDataGenerator(val_file_txt, shuffle = True)
 
             # Get the number of training/validation steps per epoch
             train_batches_per_epoch = train_generator.data_size / batch_size
@@ -395,6 +397,7 @@ def main(argv = None):
                             accuracy_list = np.concatenate((np.array([train_acc]),accuracy_list[0:19]))
                             if (i%(DISPLAY_FREQ*50) == 0 and i != 0 ):
                                 train_acc_list.append(train_acc)
+                                model.save_weights()
                                 # file_name_part = compute_file_name(cRates)
                                 # save_pkl_model(weights, biases, weights_dir, 'weights' + file_name_part + '.pkl')
                                 # print("saved the network")
