@@ -95,7 +95,7 @@ class AlexNet(object):
       for op_name in self.layer_names:
         with tf.variable_scope(op_name, reuse = True) as scope:
           weights = tf.get_variable('weights')
-          biases = tf.get_variable('biases', shape = [num_filters])
+          biases = tf.get_variable('biases')
           weights_val[op_name] = [weights.eval(), biases.eval()]
       np.save(file_name+'.npy', weights_val,encoding = 'bytes')
 
