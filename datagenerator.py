@@ -14,7 +14,7 @@ wrote my own little generator.
 class ImageDataGenerator:
     def __init__(self, class_list, horizontal_flip=False, shuffle=False,
                  mean = np.array([104., 117., 124.]), scale_size=(227, 227),
-                 nb_classes = 2):
+                 nb_classes = 1000):
 
         # Init params
         self.horizontal_flip = horizontal_flip
