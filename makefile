@@ -18,3 +18,6 @@ git-add:
 git-commit:
 	git commit -am"auto git commit"
 	git push
+git-merge:
+	git fetch
+	git merge
