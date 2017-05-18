@@ -375,7 +375,7 @@ def main(argv = None):
                 print("{} Start training...".format(datetime.now()))
                 for i in range(0,epochs):
                     for step in range(train_batches_per_epoch):
-                        (batch_x, batch_y) = train_generator.next_batch(batch_size)
+                        (batch_x, batch_y) = train_generator.next_batch(batch_size, meta_data_dir+'train/')
 
                         train_acc, cross_en = sess.run([accuracy, loss], feed_dict = {
                                         x: batch_x,
