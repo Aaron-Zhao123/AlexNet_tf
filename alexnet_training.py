@@ -161,9 +161,6 @@ def plot_weights(weights,pruning_info):
         plt.close(fig)
 
 def save_pkl_model(weights, biases, save_dir ,f_name):
-    # name = os.path.join(data_path, "cifar-10-batches-py/", filename)
-    # if not os.path.exists(path):
-    #     os.makedirs(path)
     keys = ['cov1','cov2','fc1','fc2','fc3']
     weights_val = {}
     biases_val = {}
@@ -324,7 +321,6 @@ def main(argv = None):
             # regulization_loss = l1_norm + l2_norm
 
             opt = tf.train.AdamOptimizer(lr)
-            # loss_value = tf.reduce_mean(cross_entropy) + regulization_loss
             grads = opt.compute_gradients(loss)
             org_grads = [(ClipIfNotNone(grad), var) for grad, var in grads]
             train_step = opt.apply_gradients(org_grads)
@@ -360,22 +356,15 @@ def main(argv = None):
             val_generator = ImageDataGenerator(val_file_txt, shuffle = False)
 
             # Get the number of training/validation steps per epoch
-            train_batches_per_epoch = np.floor(train_generator.data_size / batch_size).astype(np.int16)
-            val_batches_per_epoch = np.floor(val_generator.data_size / batch_size).astype(np.int16)
+            train_batches_per_epoch = train_generator.data_size / batch_size
+            val_batches_per_epoch = val_generator.data_size / batch_size
 
         if (TEST):
-            print(test_file_txt)
             test_generator = ImageDataGenerator(test_file_txt)
-            print(type(test_generator.data_size))
-            print(type(batch_size))
-            print(test_generator.data_size)
-            print(batch_size)
             test_batches_per_epoch = test_generator.data_size / batch_size
             print('data size is {}'.format(test_generator.data_size))
             print('Number of test batches per epoch is {}'.format(test_batches_per_epoch))
-            # print('images are {}'.format(test_generator.labels))
 
-        # test_batches_per_epoch = np.floor(test_generator.data_size / batch_size).astype(np.int16)
 
         with tf.Session() as sess:
             sess.run(init)
@@ -387,17 +376,18 @@ def main(argv = None):
                     for step in range(train_batches_per_epoch):
                         (batch_x, batch_y) = train_generator.next_batch(batch_size)
 
-                        train_acc, cross_en = sess.run([accuracy, loss_value], feed_dict = {
+                        train_acc, cross_en = sess.run([accuracy, loss], feed_dict = {
                                         x: batch_x,
                                         y: batch_y,
                                         keep_prob: 1.0})
 
                         if (i % DISPLAY_FREQ == 0):
-                            print('This is the {}th of {}pruning, time is {}'.format(
-                                i,
-                                cRates,
-                                datetime.now()
-                            ))
+                            if (PRUNE):
+                                print('This is the {}th of {}pruning, time is {}'.format(
+                                    i,
+                                    cRates,
+                                    datetime.now()
+                                ))
                             print("accuracy is {} and cross entropy is {}".format(
                                 train_acc,
                                 cross_en
@@ -408,7 +398,7 @@ def main(argv = None):
                                 # file_name_part = compute_file_name(cRates)
                                 # save_pkl_model(weights, biases, weights_dir, 'weights' + file_name_part + '.pkl')
                                 # print("saved the network")
-                            if (np.mean(accuracy_list) > 0.81 and train_acc >= 0.83):
+                            if (np.mean(accuracy_list) > 0.8):
                                 accuracy_list = np.zeros(20)
                                 test_acc = sess.run(accuracy, feed_dict = {
                                                         x: images_test,
@@ -417,8 +407,6 @@ def main(argv = None):
                                 print('test accuracy is {}'.format(test_acc))
                                 if (test_acc > 0.823):
                                     print("training accuracy is large, show the list: {}".format(accuracy_list))
-                                    break
-
                         _ = sess.run(train_step, feed_dict = {
                                         x: batch_x,
                                         y: batch_y,
@@ -461,12 +449,6 @@ def main(argv = None):
                             y: batch_y,
                             keep_prob: 1.0})
                         test_acc_list.append(tmp_acc)
-                        print(test_acc_list)
-                        # print(np.argmax(c_pred))
-                        # print(np.argmax(c_softmax))
-                        # print(np.argmax(batch_y))
-                        # # print(np.max(probs))
-                        # sys.exit()
                     test_acc_list = np.array(test_acc_list)
                     test_acc = np.mean(test_acc_list)
                     print("test accuracy of AlexNet is {}".format(test_acc))

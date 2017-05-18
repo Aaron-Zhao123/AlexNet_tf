@@ -2,18 +2,22 @@ import tensorflow as tf
 import numpy as np
 
 class AlexNet(object):
-    def __init__ (self, x, keep_prob, num_classes, weights_path = 'DEFAULT'):
+    def __init__ (self, x, keep_prob, num_classes, weights_path = 'DEFAULT', new_model = False):
         # -x: tf.placeholder
         self.X = x
         self.NUM_CLASSES = num_classes
         self.KEEP_PROB = keep_prob
         self.layer_names = []
 
-        if (weights_path == 'DEFAULT'):
-            self.WEIGHTS_PATH = 'bvlc_alexnet.npy'
+        if (new_model):
+          self.new_model = True
         else:
-            self.WEIGHTS_PATH = weights_path
-        # call the create function
+          self.new_model = False
+          if (weights_path == 'DEFAULT'):
+              self.WEIGHTS_PATH = 'bvlc_alexnet.npy'
+          else:
+              self.WEIGHTS_PATH = weights_path
+          # call the create function
         self.create()
 
     def create(self):
@@ -58,6 +62,14 @@ class AlexNet(object):
       """
       # Load the weights into memory
       weights_dict = np.load(self.WEIGHTS_PATH, encoding = 'bytes').item()
+
+      print("Lets check")
+      print(80*"-")
+      print("keys")
+      print(weights_dict.keys())
+      print("type")
+      print(type(weights_dict))
+      sys.exit()
 
       # Loop over all layer names stored in the weights dict
       # store the layer names
