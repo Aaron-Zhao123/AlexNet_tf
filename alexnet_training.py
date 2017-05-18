@@ -461,7 +461,7 @@ def main(argv = None):
                             keep_prob: 1.0})
                         test_acc_list.append(tmp_acc)
                         print(tmp_acc)
-                        print(np.max(softmax))
+                        print(np.max(probs))
                     test_acc_list = np.array(test_acc_list)
                     test_acc = np.mean(test_acc_list)
                     print("test accuracy of AlexNet is {}".format(test_acc))
