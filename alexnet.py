@@ -10,9 +10,9 @@ class AlexNet(object):
         self.layer_names = []
 
         if (new_model):
-          self.new_model = True
+          self.isnew_model = True
         else:
-          self.new_model = False
+          self.isnew_model = False
           if (weights_path == 'DEFAULT'):
               self.WEIGHTS_PATH = 'bvlc_alexnet.npy'
           else:
@@ -69,7 +69,6 @@ class AlexNet(object):
       print(weights_dict.keys())
       print("type")
       print(type(weights_dict))
-      sys.exit()
 
       # Loop over all layer names stored in the weights dict
       # store the layer names
@@ -81,12 +80,20 @@ class AlexNet(object):
             for data in weights_dict[op_name]:
               # Biases
               if len(data.shape) == 1:
-                var = tf.get_variable('biases', trainable = True)
-                session.run(var.assign(data))
+                if (self.isnew_model):
+                    var = tf.get_variable('biases', trainable = True,
+                        initializer=tf.random_normal_initializer())
+                else:
+                    var = tf.get_variable('biases', trainable = True)
+                    session.run(var.assign(data))
               # Weights
               else:
-                var = tf.get_variable('weights', trainable = True)
-                session.run(var.assign(data))
+                if (self.isnew_model):
+                    var = tf.get_variable('weights', trainbal = True,
+                        initializer = tf.truncated_normal_initializer())
+                else:
+                    var = tf.get_variable('weights', trainable = True)
+                    session.run(var.assign(data))
     def mask_weights(self, weights_mask, session):
       for op_name in self.layer_names:
         with tf.variable_scope(op_name, reuse = True):
