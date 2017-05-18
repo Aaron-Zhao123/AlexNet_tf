@@ -82,7 +82,7 @@ def initialize_weights_mask(first_time_training, mask_dir, file_name):
         print('setting initial mask value')
         weights_mask = {
             'conv1': np.ones([11, 11, NUM_CHANNELS, 96]),
-            'conv2': np.ones([5, 5, 96, 256]),
+            'conv2': np.ones([5, 5, 48, 256]),
             'conv3': np.ones([3, 3, 256, 384]),
             'conv4': np.ones([3, 3, 384, 384]),
             'conv5': np.ones([3, 3, 384, 256]),
