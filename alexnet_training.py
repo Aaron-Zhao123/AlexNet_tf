@@ -17,7 +17,7 @@ from datagenerator import ImageDataGenerator
 class Usage(Exception):
     def __init__ (self,msg):
         self.msg = msg
-        
+
 def prune_weights(cRates, weights, weights_mask, biases, biases_mask, mask_dir, f_name):
     keys = ['cov1','cov2','fc1','fc2','fc3']
     new_mask = {}
@@ -326,6 +326,8 @@ def main(argv = None):
 
         with tf.Session() as sess:
             sess.run(init)
+            epoch_acc = []
+            epoch_entropy = []
             weights_mask = model.load_initial_weights(sess)
 
             if (TRAIN):
@@ -370,6 +372,14 @@ def main(argv = None):
                                         x: batch_x,
                                         y: batch_y,
                                         keep_prob: dropout})
+                    epoch_acc.append(train_acc)
+                    epoch_entropy.append(cross_en)
+                with open ('acc_hist.txt', 'wb') as f:
+                    for item in epoch_acc:
+                        f.write("{}\n".format(item))
+                with open ('entropy_hist.txt', 'wb') as f:
+                    for item in epoch_entropy:
+                        f.write("{}\n".format(item))
 
             if (TEST):
                 test_acc_list = []
