@@ -70,7 +70,7 @@ class ImageDataGenerator:
             self.shuffle_data()
 
 
-    def next_batch(self, batch_size, imgs_parent_dir):
+    def next_batch(self, batch_size, parent_dir):
         """
         This function gets the next n ( = batch_size) images from the path list
         and labels and loads the images into them into memory
