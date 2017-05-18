@@ -251,7 +251,7 @@ def main(argv = None):
             raise Usage(msg)
         epochs = 100
         dropout = 0.5
-        batch_size = 128
+        batch_size = 1
         num_classes = 1000
 
         NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN = 50000
@@ -455,12 +455,13 @@ def main(argv = None):
                     # Taverse one epoch
                     for step in range(test_batches_per_epoch):
                         (batch_x, batch_y) = test_generator.next_batch(batch_size, meta_data_dir + 'test/')
-                        tmp_acc, c_pred = sess.run([accuracy, correct_prediction], feed_dict = {
+                        tmp_acc, c_pred = sess.run([accuracy, score], feed_dict = {
                             x: batch_x,
                             y: batch_y,
                             keep_prob: 1.0})
                         test_acc_list.append(tmp_acc)
-                        print(c_pred)
+                        print(np.argmax(c_pred))
+                        print(np.argmax(batch_y))
                         # print(np.max(probs))
                     test_acc_list = np.array(test_acc_list)
                     test_acc = np.mean(test_acc_list)
