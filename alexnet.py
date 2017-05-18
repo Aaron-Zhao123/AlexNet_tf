@@ -11,6 +11,7 @@ class AlexNet(object):
 
         if (new_model):
           self.isnew_model = True
+          self.WEIGHTS_PATH = 'bvlc_alexnet.npy'
         else:
           self.isnew_model = False
           if (weights_path == 'DEFAULT'):
@@ -61,10 +62,7 @@ class AlexNet(object):
       need a special load function
       """
       # Load the weights into memory
-      if (self.isnew_model):
-          pass
-      else:
-          weights_dict = np.load(self.WEIGHTS_PATH, encoding = 'bytes').item()
+      weights_dict = np.load(self.WEIGHTS_PATH, encoding = 'bytes').item()
 
 
       # Loop over all layer names stored in the weights dict
