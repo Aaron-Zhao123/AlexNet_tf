@@ -6,6 +6,7 @@ import pickle
 import time
 import getopt
 import cv2
+import datetime
 
 from alexnet import AlexNet
 from caffe_classes import class_names
