@@ -362,9 +362,10 @@ def main(argv = None):
             train_batches_per_epoch = np.floor(train_generator.data_size / batch_size).astype(np.int16)
             val_batches_per_epoch = np.floor(val_generator.data_size / batch_size).astype(np.int16)
 
-        if (TEST and not LOCAL_TEST):
-            test_generator = ImageDataGenerator(test_file_txt, horizontal_flip = False, shuffle = False)
+        if (TEST):
+            test_generator = ImageDataGenerator(test_file_txt)
             test_batches_per_epoch = np.floor(test_generator.data_size / batch_size).astype(np.int16)
+            print('Number of test batches per epoch is {}'.format(test_batches_per_epoch))
 
         # test_batches_per_epoch = np.floor(test_generator.data_size / batch_size).astype(np.int16)
 
