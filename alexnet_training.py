@@ -453,8 +453,8 @@ def main(argv = None):
                 else:
                     test_acc_list = []
                     # Taverse one epoch
-                    for step in range(test_batches_per_epoch, meta_data_dir + 'test/'):
-                        (batch_x, batch_y) = test_generator.next_batch(batch_size)
+                    for step in range(test_batches_per_epoch):
+                        (batch_x, batch_y) = test_generator.next_batch(batch_size, meta_data_dir + 'test/')
                         tmp_acc = sess.run(accuracy, feed_dict = {
                             x: batch_x,
                             y: batch_y,
