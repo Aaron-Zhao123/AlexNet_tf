@@ -7,7 +7,7 @@ clean:
 cpurun:
 	python run.py
 
-# example: make GPU=0,1 linuxrun
+# example: make GPU=0,1 gpurun
 # this activates GPU0 and GPU1 for running the thread
 gpurun:
 	CUDA_VISIBLE_DEVICES=$(GPU) python run.py

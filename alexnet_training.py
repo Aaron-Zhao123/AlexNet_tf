@@ -267,7 +267,7 @@ def main(argv = None):
 
         mask_dir = parent_dir
         weights_dir = parent_dir
-        LOCAL_TEST = 1
+        LOCAL_TEST = 0
 
 
         file_name_part = compute_file_name(cRates)
@@ -278,9 +278,12 @@ def main(argv = None):
             (weights_mask, biases_mask)= initialize_weights_mask(first_time_load, mask_dir, 'mask'+file_name_part + '.pkl')
 
 
-        meta_data_dir = '/local/scratch/share/ImageNet/ILSVRC/Data/CLS-LOC'
-        index_file_dir = '/local/scratch/share/ImageNet/ILSVRC/ImageSets/CLS-LOC/'
-        index_file_dir = 'cpu_test_data/'
+        if (LOCAL_TEST):
+            index_file_dir = 'cpu_test_data/'
+        else:
+            meta_data_dir = '/local/scratch/share/ImageNet/ILSVRC/Data/CLS-LOC'
+            index_file_dir = '/local/scratch/share/ImageNet/ILSVRC/ImageSets/CLS-LOC/'
+
         if (TRAIN):
             train_file_txt = index_file_dir + 'train.txt'
             val_file_txt = index_file_dir + 'val.txt'
@@ -355,25 +358,20 @@ def main(argv = None):
                                                  horizontal_flip = True, shuffle = True)
             val_generator = ImageDataGenerator(val_file_txt, shuffle = False)
 
-        # test_generator = ImageDataGenerator(test_file_txt, shuffle = False)
-
-        if (TRAIN):
             # Get the number of training/validation steps per epoch
             train_batches_per_epoch = np.floor(train_generator.data_size / batch_size).astype(np.int16)
             val_batches_per_epoch = np.floor(val_generator.data_size / batch_size).astype(np.int16)
+
+        if (TEST and not LOCAL_TEST):
+            test_generator = ImageDataGenerator(test_file_txt, horizontal_flip = False, shuffle = False)
+            test_batches_per_epoch = np.floor(test_generator.data_size / batch_size).astype(np.int16)
 
         # test_batches_per_epoch = np.floor(test_generator.data_size / batch_size).astype(np.int16)
 
         with tf.Session() as sess:
             sess.run(init)
-
-
             model.load_initial_weights(sess)
 
-            # print('pre train pruning info')
-            # prune_info(weights_new, 0)
-            # print(78*'-')
-            # start = time.time()
             if TRAIN == 1:
                 print("{} Start training...".format(datetime.now()))
                 for i in range(0,epochs):
@@ -419,8 +417,7 @@ def main(argv = None):
 
             if (TEST):
                 test_acc_list = []
-
-                if (LOCAL_TEST == 1):
+                if (LOCAL_TEST):
                     image_dir = "cpu_test_data/tmp_images/"
                     imagenet_mean = np.array([104., 117., 124.], dtype = np.float32)
                     test_batches_per_epoch = 3
@@ -432,13 +429,8 @@ def main(argv = None):
                         tmp -= imagenet_mean[i]
                         tmp = tmp.reshape((1,227,227,3))
                         imgs_test.append(tmp)
-
-
-
-                if (LOCAL_TEST):
                     names = []
                     probs = []
-
                     for step in range(test_batches_per_epoch):
                         prob = sess.run(softmax, feed_dict = {
                                                 x: imgs_test[step],
@@ -450,6 +442,21 @@ def main(argv = None):
                     print("names are {}".format(names))
                     print("probs are {}".format(probs))
                     sys.exit()
+                else:
+                    test_acc_list = []
+                    # Taverse one epoch
+                    for step in range(test_batches_per_epoch):
+                        (batch_x, batch_y) = test_generator.next_batch(batch_size)
+                        tmp_acc = sess.run(accuracy, feed_dict = {
+                            x: batch_x,
+                            y: batch_y,
+                            keep_prob: 1.0})
+                    test_acc_list = np.array(test_acc_list)
+                    test_acc = np.mean(test_acc_list)
+                    print("test accuracy of AlexNet is {}".format(test_acc))
+                    sys.exit()
+
+
             # if (save_for_next_iter):
             #     print('saving for the next iteration of dynamic surgery')
             #     file_name_part = compute_file_name(cRates)

@@ -21,7 +21,7 @@ lr = 1e-4
 crates = {
     'cov1': 0.,
     'cov2': 0.,
-    'fc1': 1.70,
+    'fc1': 0.,
     'fc2': 0.,
     'fc3': 0.
 }
@@ -36,7 +36,7 @@ download_dir = '.'
 download.maybe_download_and_extract(url, download_dir)
 
 # Prune
-while (crates['cov2'] < 2):
+while (crates['fc1'] < 2):
     count = 0
     iter_cnt = 0
     while (iter_cnt < 7):
