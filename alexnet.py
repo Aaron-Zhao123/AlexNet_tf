@@ -84,7 +84,7 @@ class AlexNet(object):
               # Weights
               else:
                 if (self.isnew_model):
-                    var = tf.get_variable('weights', trainbal = True,
+                    var = tf.get_variable('weights', trainable = True,
                         initializer = tf.truncated_normal_initializer())
                 else:
                     var = tf.get_variable('weights', trainable = True)
