@@ -22,32 +22,32 @@ class AlexNet(object):
 
     def create(self, weights_mask):
         # 1st Layer: Conv (w ReLu) -> Pool -> Lrn
-        conv1 = conv(self.X, 11, 11, 96, 4, 4, padding = 'VALID', name = 'conv1', weights_mask['conv1'])
+        conv1 = conv(self.X, 11, 11, 96, 4, 4, padding = 'VALID', name = 'conv1', mask = weights_mask['conv1'])
         pool1 = max_pool(conv1, 3, 3, 2, 2, padding = 'VALID', name = 'pool1')
         norm1 = lrn(pool1, 2, 2e-05, 0.75, name = 'norm1')
 
         # 2nd Layer: Conv (w ReLu) -> Pool -> Lrn with 2 groups
-        conv2 = conv(norm1, 5, 5, 256, 1, 1, groups = 2, name = 'conv2', weights_mask['conv2'])
-        pool2 = max_pool(conv2, 3, 3, 2, 2, padding = 'VALID', name ='pool2')
+        conv2 = conv(norm1, 5, 5, 256, 1, 1, groups = 2, name = 'conv2', mask = weights_mask['conv2'])
+        pool2 = max_pool(conv2, 3, 3, 2, 2, padding = 'VALID', mask = name ='pool2')
         norm2 = lrn(pool2, 2, 2e-05, 0.75, name = 'norm2')
 
         # 3rd Layer: Conv (w ReLu)
-        conv3 = conv(norm2, 3, 3, 384, 1, 1, name = 'conv3', weights_mask['conv3'])
+        conv3 = conv(norm2, 3, 3, 384, 1, 1, name = 'conv3', mask = weights_mask['conv3'])
 
         # 4th Layer: Conv (w ReLu) splitted into two groups
-        conv4 = conv(conv3, 3, 3, 384, 1, 1, groups = 2, name = 'conv4', weights_mask['conv4'])
+        conv4 = conv(conv3, 3, 3, 384, 1, 1, groups = 2, name = 'conv4', mask = weights_mask['conv4'])
 
         # 5th Layer: Conv (w ReLu) -> Pool splitted into two groups
-        conv5 = conv(conv4, 3, 3, 256, 1, 1, groups = 2, name = 'conv5', weights_mask['conv5'])
+        conv5 = conv(conv4, 3, 3, 256, 1, 1, groups = 2, name = 'conv5', mask = weights_mask['conv5'])
         pool5 = max_pool(conv5, 3, 3, 2, 2, padding = 'VALID', name = 'pool5')
 
         # 6th Layer: Flatten -> FC (w ReLu) -> Dropout
         flattened = tf.reshape(pool5, [-1, 6*6*256])
-        fc6 = fc(flattened, 6*6*256, 4096, name='fc6', weights_mask['fc6'])
+        fc6 = fc(flattened, 6*6*256, 4096, name='fc6', mask = weights_mask['fc6'])
         dropout6 = dropout(fc6, self.KEEP_PROB)
 
         # 7th Layer: FC (w ReLu) -> Dropout
-        fc7 = fc(dropout6, 4096, 4096, name = 'fc7', weights_mask['fc7'])
+        fc7 = fc(dropout6, 4096, 4096, name = 'fc7', mask = weights_mask['fc7'])
         dropout7 = dropout(fc7, self.KEEP_PROB)
 
         # 8th Layer: FC and return unscaled activations (for tf.nn.softmax_cross_entropy_with_logits)
