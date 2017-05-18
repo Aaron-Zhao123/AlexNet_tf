@@ -329,7 +329,7 @@ def main(argv = None):
             train_step = opt.apply_gradients(org_grads)
 
         with tf.name_scope("accuracy"):
-            correct_prediction = tf.equal(tf.argmax(score,1), tf.argmax(y,1))
+            correct_prediction = tf.equal(tf.argmax(softmax,1), tf.argmax(y,1))
             accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
         # keys = ['cov1', 'cov2', 'fc1', 'fc2', 'fc3']
