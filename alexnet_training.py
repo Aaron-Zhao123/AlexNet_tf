@@ -455,18 +455,19 @@ def main(argv = None):
                     # Taverse one epoch
                     for step in range(test_batches_per_epoch):
                         (batch_x, batch_y) = test_generator.next_batch(batch_size, meta_data_dir + 'test/')
-                        tmp_acc, c_pred = sess.run([accuracy, score], feed_dict = {
+                        tmp_acc, c_pred, c_softmax = sess.run([accuracy, score, softmax], feed_dict = {
                             x: batch_x,
                             y: batch_y,
                             keep_prob: 1.0})
                         test_acc_list.append(tmp_acc)
                         print(np.argmax(c_pred))
+                        print(np.argmax(c_softmax))
                         print(np.argmax(batch_y))
                         # print(np.max(probs))
+                        sys.exit()
                     test_acc_list = np.array(test_acc_list)
                     test_acc = np.mean(test_acc_list)
                     print("test accuracy of AlexNet is {}".format(test_acc))
-                    sys.exit()
 
 
             # if (save_for_next_iter):
