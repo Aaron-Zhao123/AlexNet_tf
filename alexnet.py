@@ -97,7 +97,7 @@ class AlexNet(object):
           weights = tf.get_variable('weights')
           biases = tf.get_variable('biases')
           weights_val[op_name] = [weights.eval(), biases.eval()]
-      np.save(file_name+'.npy', weights_val,encoding = 'bytes')
+      np.save(file_name+'.npy', weights_val)
 
     def mask_weights(self, weights_mask, session):
       for op_name in self.layer_names:
