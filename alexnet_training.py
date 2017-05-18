@@ -251,7 +251,7 @@ def main(argv = None):
             raise Usage(msg)
         epochs = 100
         dropout = 0.5
-        batch_size = 1
+        batch_size = 128
         num_classes = 1000
 
         NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN = 50000
@@ -461,14 +461,16 @@ def main(argv = None):
                             y: batch_y,
                             keep_prob: 1.0})
                         test_acc_list.append(tmp_acc)
-                        print(np.argmax(c_pred))
-                        print(np.argmax(c_softmax))
-                        print(np.argmax(batch_y))
-                        # print(np.max(probs))
-                        sys.exit()
+                        print(test_acc_list)
+                        # print(np.argmax(c_pred))
+                        # print(np.argmax(c_softmax))
+                        # print(np.argmax(batch_y))
+                        # # print(np.max(probs))
+                        # sys.exit()
                     test_acc_list = np.array(test_acc_list)
                     test_acc = np.mean(test_acc_list)
                     print("test accuracy of AlexNet is {}".format(test_acc))
+                    sys.exit()
 
 
             # if (save_for_next_iter):
