@@ -281,7 +281,7 @@ def main(argv = None):
         if (LOCAL_TEST):
             index_file_dir = 'cpu_test_data/'
         else:
-            meta_data_dir = '/local/scratch/share/ImageNet/ILSVRC/Data/CLS-LOC'
+            meta_data_dir = '/local/scratch/share/ImageNet/ILSVRC/Data/CLS-LOC/'
             index_file_dir = '/local/scratch/share/ImageNet/ILSVRC/ImageSets/CLS-LOC/'
 
         if (TRAIN):
@@ -453,7 +453,7 @@ def main(argv = None):
                 else:
                     test_acc_list = []
                     # Taverse one epoch
-                    for step in range(test_batches_per_epoch):
+                    for step in range(test_batches_per_epoch, meta_data_dir + 'test/'):
                         (batch_x, batch_y) = test_generator.next_batch(batch_size)
                         tmp_acc = sess.run(accuracy, feed_dict = {
                             x: batch_x,
