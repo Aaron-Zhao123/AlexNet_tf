@@ -34,6 +34,23 @@ with_biases = False
 url = 'http://www.cs.toronto.edu/~guerzhoy/tf_alexnet/bvlc_alexnet.npy'
 download_dir = '.'
 download.maybe_download_and_extract(url, download_dir)
+INITIAL_TRAIN == True
+if (INITIAL_TRAIN):
+    # TRAIN
+    param = [
+        ('-cRates', crates),
+        ('-first_time', True),
+        ('-train', True),
+        ('-prune', False),
+        ('-lr', lr),
+        ('-with_biases', with_biases),
+        ('-parent_dir', parent_dir),
+        ('-lambda1', 1e-5),
+        ('-lambda2', 1e-5)
+        ]
+    _ = alexnet_training.main(param)
+    sys.exit()
+
 
 # Prune
 while (crates['fc1'] < 2):
@@ -88,7 +105,6 @@ while (crates['fc1'] < 2):
             ]
         acc = alexnet_training.main(param)
 
-        sys.exit()
 
         if (acc > 0.823 or iter_cnt == 7):
             file_name = compute_file_name(crates)

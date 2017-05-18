@@ -77,8 +77,8 @@ def prune_weights(cRates, weights, weights_mask, biases, biases_mask, mask_dir, 
 
 def initialize_weights_mask(first_time_training, mask_dir, file_name):
     NUM_CHANNELS = 3
-    NUM_CLASSES = 10
-    if (first_time_training == 1):
+    NUM_CLASSES = 1000
+    if (first_time_training):
         print('setting initial mask value')
         weights_mask = {
             'cov1': np.ones([11, 11, NUM_CHANNELS, 96]),
@@ -261,7 +261,6 @@ def main(argv = None):
         TEST = 1
         TRAIN_OR_TEST = 0
         NUM_CHANNELS = 3
-        first_time_load = 1
 
         mask_dir = parent_dir
         weights_dir = parent_dir
@@ -308,7 +307,7 @@ def main(argv = None):
         keep_prob = tf.placeholder(tf.float32)
 
         # initilize the model from the class constructer
-        model = AlexNet(x, keep_prob, num_classes)
+        model = AlexNet(x, keep_prob, num_classes, new_model=first_time_load)
 
         score = model.fc8
         softmax = tf.nn.softmax(score)
@@ -369,9 +368,9 @@ def main(argv = None):
 
         with tf.Session() as sess:
             sess.run(init)
-            model.load_initial_weights(sess)
+            weights_mask = model.load_initial_weights(sess)
 
-            if TRAIN == 1:
+            if (TRAIN):
                 print("{} Start training...".format(datetime.now()))
                 for i in range(0,epochs):
                     for step in range(train_batches_per_epoch):
