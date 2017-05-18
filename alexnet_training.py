@@ -329,7 +329,7 @@ def main(argv = None):
             train_step = opt.apply_gradients(org_grads)
 
         with tf.name_scope("accuracy"):
-            correct_prediction = tf.equal(tf.argmax(softmax,1), tf.argmax(y,1))
+            correct_prediction = tf.equal(tf.argmax(score,1), tf.argmax(y,1))
             accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
         # keys = ['cov1', 'cov2', 'fc1', 'fc2', 'fc3']
@@ -455,12 +455,13 @@ def main(argv = None):
                     # Taverse one epoch
                     for step in range(test_batches_per_epoch):
                         (batch_x, batch_y) = test_generator.next_batch(batch_size, meta_data_dir + 'test/')
-                        tmp_acc = sess.run(accuracy, feed_dict = {
+                        tmp_acc,probs = sess.run([accuracy, softmax], feed_dict = {
                             x: batch_x,
                             y: batch_y,
                             keep_prob: 1.0})
                         test_acc_list.append(tmp_acc)
                         print(tmp_acc)
+                        print(np.max(softmax))
                     test_acc_list = np.array(test_acc_list)
                     test_acc = np.mean(test_acc_list)
                     print("test accuracy of AlexNet is {}".format(test_acc))
