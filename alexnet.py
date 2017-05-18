@@ -90,6 +90,7 @@ class AlexNet(object):
                     var = tf.get_variable('weights', trainable = True)
                     session.run(var.assign(data))
     def save_weights(self, file_name = 'base'):
+      print('Saving weights..')
       weights_val = {}
       for op_name in self.layer_names:
         with tf.variable_scope(op_name) as scope:

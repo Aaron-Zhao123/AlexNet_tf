@@ -383,7 +383,7 @@ def main(argv = None):
                                         y: batch_y,
                                         keep_prob: 1.0})
 
-                        if (i % DISPLAY_FREQ == 0):
+                        if (step % DISPLAY_FREQ == 0):
                             if (PRUNE):
                                 print('This is the {}th of {}pruning, time is {}'.format(
                                     i,
@@ -395,7 +395,7 @@ def main(argv = None):
                                 cross_en
                             ))
                             accuracy_list = np.concatenate((np.array([train_acc]),accuracy_list[0:19]))
-                            if (i%(DISPLAY_FREQ*50) == 0 and i != 0 ):
+                            if (stepi%(DISPLAY_FREQ*50) == 0):
                                 train_acc_list.append(train_acc)
                                 model.save_weights()
                                 # file_name_part = compute_file_name(cRates)
