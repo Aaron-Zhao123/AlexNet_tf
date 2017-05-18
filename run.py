@@ -1,6 +1,7 @@
 import os
 import alexnet_training
 import sys
+import download
 
 def compute_file_name(p):
     name = ''
@@ -32,7 +33,7 @@ with_biases = False
 # check npy files
 url = 'http://www.cs.toronto.edu/~guerzhoy/tf_alexnet/bvlc_alexnet.npy'
 download_dir = '.'
-maybe_download_and_extract(url, download_dir)
+download.maybe_download_and_extract(url, download_dir)
 
 # Prune
 while (crates['cov2'] < 2):
