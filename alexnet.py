@@ -61,14 +61,9 @@ class AlexNet(object):
       need a special load function
       """
       # Load the weights into memory
-      weights_dict = np.load(self.WEIGHTS_PATH, encoding = 'bytes').item()
+      if (self.isnew_model):
+          weights_dict = np.load(self.WEIGHTS_PATH, encoding = 'bytes').item()
 
-      print("Lets check")
-      print(80*"-")
-      print("keys")
-      print(weights_dict.keys())
-      print("type")
-      print(type(weights_dict))
 
       # Loop over all layer names stored in the weights dict
       # store the layer names
