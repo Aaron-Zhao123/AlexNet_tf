@@ -62,6 +62,8 @@ class AlexNet(object):
       """
       # Load the weights into memory
       if (self.isnew_model):
+          pass
+      else:
           weights_dict = np.load(self.WEIGHTS_PATH, encoding = 'bytes').item()
 
 
