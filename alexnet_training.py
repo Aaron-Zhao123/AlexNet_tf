@@ -363,6 +363,7 @@ def main(argv = None):
             val_batches_per_epoch = np.floor(val_generator.data_size / batch_size).astype(np.int16)
 
         if (TEST):
+            print(test_file_txt)
             test_generator = ImageDataGenerator(test_file_txt)
             test_batches_per_epoch = np.floor(test_generator.data_size / batch_size).astype(np.int16)
             print('Number of test batches per epoch is {}'.format(test_batches_per_epoch))
