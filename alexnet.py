@@ -28,7 +28,7 @@ class AlexNet(object):
 
         # 2nd Layer: Conv (w ReLu) -> Pool -> Lrn with 2 groups
         conv2 = conv(norm1, 5, 5, 256, 1, 1, groups = 2, name = 'conv2', mask = weights_mask['conv2'])
-        pool2 = max_pool(conv2, 3, 3, 2, 2, padding = 'VALID', mask = name ='pool2')
+        pool2 = max_pool(conv2, 3, 3, 2, 2, padding = 'VALID', name ='pool2')
         norm2 = lrn(pool2, 2, 2e-05, 0.75, name = 'norm2')
 
         # 3rd Layer: Conv (w ReLu)
