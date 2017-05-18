@@ -17,51 +17,7 @@ from datagenerator import ImageDataGenerator
 class Usage(Exception):
     def __init__ (self,msg):
         self.msg = msg
-
-def initialize_variables(exist, file_name):
-    NUM_CHANNELS = 3
-    IMAGE_SIZE = 32
-    NUM_CLASSES = 10
-    keys = ['cov1','cov2','fc1','fc2','fc3']
-    if (exist == 1):
-        with open(file_name, 'rb') as f:
-            (weights_val, biases_val) = pickle.load(f)
-        weights = {
-            'cov1': tf.Variable(weights_val['cov1']),
-            'cov2': tf.Variable(weights_val['cov2']),
-            'fc1': tf.Variable(weights_val['fc1']),
-            'fc2': tf.Variable(weights_val['fc2']),
-            'fc3': tf.Variable(weights_val['fc3'])
-        }
-        biases = {
-            'cov1': tf.Variable(biases_val['cov1']),
-            'cov2': tf.Variable(biases_val['cov2']),
-            'fc1': tf.Variable(biases_val['fc1']),
-            'fc2': tf.Variable(biases_val['fc2']),
-            'fc3': tf.Variable(biases_val['fc3'])
-        }
-    else:
-        weights = {
-            'cov1': tf.Variable(tf.truncated_normal([5, 5, NUM_CHANNELS, 64],
-                                                        stddev=5e-2)),
-            'cov2': tf.Variable(tf.truncated_normal([5, 5, 64, 64],
-                                                        stddev=5e-2)),
-            'fc1': tf.Variable(tf.truncated_normal([6 * 6 * 64, 384],
-                                                        stddev=0.04)),
-            'fc2': tf.Variable(tf.random_normal([384, 192],
-                                                        stddev=0.04)),
-            'fc3': tf.Variable(tf.random_normal([192, NUM_CLASSES],
-                                                        stddev=1/192.0))
-        }
-        biases = {
-            'cov1': tf.Variable(tf.constant(0.1, shape=[64])),
-            'cov2': tf.Variable(tf.constant(0.1, shape=[64])),
-            'fc1': tf.Variable(tf.constant(0.1, shape=[384])),
-            'fc2': tf.Variable(tf.constant(0.1, shape=[192])),
-            'fc3': tf.Variable(tf.constant(0.0, shape=[NUM_CLASSES]))
-        }
-    return (weights, biases)
-
+        
 def prune_weights(cRates, weights, weights_mask, biases, biases_mask, mask_dir, f_name):
     keys = ['cov1','cov2','fc1','fc2','fc3']
     new_mask = {}
