@@ -290,6 +290,7 @@ def main(argv = None):
             test_file_txt = index_file_dir + 'test.txt'
         else:
             test_file_txt = index_file_dir + 'test.txt'
+            test_file_txt = index_file_dir + 'val.txt'
 
         # if (first_time_load):
         #     PREV_MODEL_EXIST = 0
