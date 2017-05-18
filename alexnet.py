@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 
 class AlexNet(object):
-    def __init__ (self, x, keep_prob, num_classes, weights_path = 'DEFAULT', new_model = False):
+    def __init__ (self, x, keep_prob, num_classes, weights_mask, weights_path = 'DEFAULT', new_model = False):
         # -x: tf.placeholder
         self.X = x
         self.NUM_CLASSES = num_classes
@@ -18,7 +18,7 @@ class AlexNet(object):
           else:
               self.WEIGHTS_PATH = weights_path
           # call the create function
-        self.create()
+        self.create(weights_mask)
 
     def create(self, weights_mask):
         # 1st Layer: Conv (w ReLu) -> Pool -> Lrn
