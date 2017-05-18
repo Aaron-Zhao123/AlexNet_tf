@@ -367,7 +367,9 @@ def main(argv = None):
             test_generator = ImageDataGenerator(test_file_txt)
             print(type(test_generator.data_size))
             print(type(batch_size))
-            test_batches_per_epoch = np.floor(test_generator.data_size / batch_size).astype(np.int16)
+            print(test_generator.data_size)
+            print(batch_size)
+            test_batches_per_epoch = test_generator.data_size / batch_size
             print('data size is {}'.format(test_generator.data_size))
             print('Number of test batches per epoch is {}'.format(test_batches_per_epoch))
             # print('images are {}'.format(test_generator.labels))
