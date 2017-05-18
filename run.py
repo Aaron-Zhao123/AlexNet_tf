@@ -34,7 +34,7 @@ with_biases = False
 url = 'http://www.cs.toronto.edu/~guerzhoy/tf_alexnet/bvlc_alexnet.npy'
 download_dir = '.'
 download.maybe_download_and_extract(url, download_dir)
-INITIAL_TRAIN == True
+INITIAL_TRAIN = True
 if (INITIAL_TRAIN):
     # TRAIN
     param = [
