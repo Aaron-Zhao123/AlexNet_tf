@@ -1,9 +1,11 @@
-clean-pyc:
+clean:
 	find . -name '*.pyc' -exec rm -rf {} +
 	find . -name '*.pyo' -exec rm -rf {} +
 	find . -name '*.~' -exec rm -rf {} +
-run:
+macrun:
 	python run.py
+linuxrun:
+	CUDA_VISIBLE_DEVICES=$(GPU) python run.py
 git-add:
 	git add -A
 	git commit -m"auto git add all"
