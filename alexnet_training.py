@@ -263,10 +263,12 @@ def main(argv = None):
         keep_prob = tf.placeholder(tf.float32)
 
         # initilize the model from the class constructer
-        model = AlexNet(x, keep_prob, num_classes, weights_mask, new_model=first_time_load)
+        model = AlexNet(x, keep_prob, num_classes, weights_mask, new_model = first_time_load)
 
         score = model.fc8
         softmax = tf.nn.softmax(score)
+
+        var_list = [v for v in tf.trainable_variables() if v.name.split('/')[0] in train_layers]
 
         with tf.name_scope("cross_ent"):
             loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits = score, labels = y))
@@ -280,7 +282,11 @@ def main(argv = None):
             # grads = opt.compute_gradients(loss)
             # org_grads = [(ClipIfNotNone(grad), var) for grad, var in grads]
             # train_step = opt.apply_gradients(org_grads)
-            train_step = tf.train.AdamOptimizer(learning_rate=lr).minimize(loss)
+            print('check var list :{}'.format(var_list))
+            gradients = tf.gradients(loss, var_list)
+            gradients = list(zip(gradients, var_list))
+            opt = tf.train.AdamOptimizer(learning_rate=lr)
+            train_step = opt.apply_gradients(grads_and_vars=gradients)
 
 
         with tf.name_scope("accuracy"):
