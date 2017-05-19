@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import copy
+import sys
 
 """
 This code is highly influenced by the implementation of:
@@ -60,6 +61,8 @@ class ImageDataGenerator:
         for i in idx:
             self.images.append(images[i])
             self.labels.append(labels[i])
+        print(self.labels)
+        sys.exit()
 
     def reset_pointer(self):
         """

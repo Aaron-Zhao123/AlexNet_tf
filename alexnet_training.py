@@ -317,7 +317,7 @@ def main(argv = None):
 
         if (TRAIN):
             train_generator = ImageDataGenerator(train_file_txt,
-                                                 horizontal_flip = True, shuffle = True)
+                                                 horizontal_flip = False, shuffle = True)
             val_generator = ImageDataGenerator(val_file_txt, shuffle = True)
 
             # Get the number of training/validation steps per epoch
