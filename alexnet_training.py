@@ -355,10 +355,10 @@ def main(argv = None):
                                     cRates,
                                     datetime.now()
                                 ))
-                            # print("accuracy is {} and cross entropy is {}".format(
-                            #     train_acc,
-                            #     cross_en
-                            # ))
+                            print("accuracy is {} and cross entropy is {}".format(
+                                train_acc,
+                                cross_en
+                            ))
                             accuracy_list = np.concatenate((np.array([train_acc]),accuracy_list[0:19]))
                             epoch_acc.append(train_acc)
                             epoch_entropy.append(cross_en)

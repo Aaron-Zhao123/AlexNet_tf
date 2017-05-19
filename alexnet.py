@@ -76,20 +76,21 @@ class AlexNet(object):
               # Biases
               if len(data.shape) == 1:
                 if (self.isnew_model):
-                    var = tf.get_variable('biases', trainable = True,
+                    var = tf.get_variable('biases', trainable = False,
                         initializer=tf.random_normal_initializer())
                 else:
-                    var = tf.get_variable('biases', trainable = True)
+                    var = tf.get_variable('biases', trainable = False)
                     session.run(var.assign(data))
               # Weights
               else:
                 if (self.isnew_model):
                     print('check size {}, is {}'.format(op_name, np.shape(data)))
-                    var = tf.get_variable('weights', trainable = True,
+                    var = tf.get_variable('weights', trainable = False,
                         initializer = tf.truncated_normal_initializer())
                 else:
-                    var = tf.get_variable('weights', trainable = True)
+                    var = tf.get_variable('weights', trainable = False)
                     session.run(var.assign(data))
+
     def save_weights(self, file_name = 'base'):
       print('Saving weights..')
       weights_val = {}
@@ -126,9 +127,9 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
 
   with tf.variable_scope(name) as scope:
     # Create tf variables for the weights and biases of the conv layer
-    weights = tf.get_variable('weights', shape = [filter_height, filter_width, input_channels/groups, num_filters])
+    weights = tf.get_variable('weights', shape = [filter_height, filter_width, input_channels/groups, num_filters], trainable = True)
     new_weights = weights * mask
-    biases = tf.get_variable('biases', shape = [num_filters])
+    biases = tf.get_variable('biases', shape = [num_filters], trainable = True)
 
 
     if groups == 1:
