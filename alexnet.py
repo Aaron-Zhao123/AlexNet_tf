@@ -18,7 +18,7 @@ class AlexNet(object):
             else:
                 self.WEIGHTS_PATH = weights_path
             # call the create function
-            self.create(weights_mask)
+        self.create(weights_mask)
     def create(self, weights_mask):
         # 1st Layer: Conv (w ReLu) -> Pool -> Lrn
         conv1 = conv(self.X, 11, 11, 96, 4, 4, padding = 'VALID', name = 'conv1', mask = weights_mask['conv1'])
