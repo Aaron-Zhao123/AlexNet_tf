@@ -39,7 +39,8 @@ if (INITIAL_TRAIN):
     # TRAIN
     param = [
         ('-cRates', crates),
-        ('-first_time', True),
+        # ('-first_time', True),
+        ('-first_time', False),
         ('-train', True),
         ('-prune', False),
         ('-lr', lr),
