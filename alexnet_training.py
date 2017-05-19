@@ -340,54 +340,54 @@ def main(argv = None):
             if (TRAIN):
                 print("{} Start training...".format(datetime.now()))
                 for i in range(0,epochs):
-                    # print("{} Epoch number: {}".format(datetime.now(), i+1))
-                    # for step in range(train_batches_per_epoch):
-                    #     (batch_x, batch_y) = train_generator.next_batch(batch_size, meta_data_dir+'train/')
-                    #
-                    #     train_acc, cross_en = sess.run([accuracy, loss], feed_dict = {
-                    #                     x: batch_x,
-                    #                     y: batch_y,
-                    #                     keep_prob: 1.0})
-                    #
-                    #     if (step % DISPLAY_FREQ == 0):
-                    #         if (PRUNE):
-                    #             print('This is the {}th of {}pruning, time is {}'.format(
-                    #                 i,
-                    #                 cRates,
-                    #                 datetime.now()
-                    #             ))
-                    #         # print("accuracy is {} and cross entropy is {}".format(
-                    #         #     train_acc,
-                    #         #     cross_en
-                    #         # ))
-                    #         accuracy_list = np.concatenate((np.array([train_acc]),accuracy_list[0:19]))
-                    #         epoch_acc.append(train_acc)
-                    #         epoch_entropy.append(cross_en)
-                    #         if (step%(DISPLAY_FREQ*50) == 0 and step != 0):
-                    #             train_acc_list.append(train_acc)
-                    #             model.save_weights()
-                    #             # file_name_part = compute_file_name(cRates)
-                    #             # save_pkl_model(weights, biases, weights_dir, 'weights' + file_name_part + '.pkl')
-                    #             # print("saved the network")
-                    #             with open ('acc_hist.txt', 'wb') as f:
-                    #                 for item in epoch_acc:
-                    #                     f.write("{}\n".format(item))
-                    #             with open ('entropy_hist.txt', 'wb') as f:
-                    #                 for item in epoch_entropy:
-                    #                     f.write("{}\n".format(item))
-                    #         if (np.mean(accuracy_list) > 0.8):
-                    #             accuracy_list = np.zeros(20)
-                    #             test_acc = sess.run(accuracy, feed_dict = {
-                    #                                     x: images_test,
-                    #                                     y: labels_test,
-                    #                                     keep_prob: 1.0})
-                    #             print('test accuracy is {}'.format(test_acc))
-                    #             if (test_acc > 0.823):
-                    #                 print("training accuracy is large, show the list: {}".format(accuracy_list))
-                    #     _ = sess.run(train_step, feed_dict = {
-                    #                     x: batch_x,
-                    #                     y: batch_y,
-                    #                     keep_prob: dropout})
+                    print("{} Epoch number: {}".format(datetime.now(), i+1))
+                    for step in range(train_batches_per_epoch):
+                        (batch_x, batch_y) = train_generator.next_batch(batch_size, meta_data_dir+'train/')
+
+                        train_acc, cross_en = sess.run([accuracy, loss], feed_dict = {
+                                        x: batch_x,
+                                        y: batch_y,
+                                        keep_prob: 1.0})
+
+                        if (step % DISPLAY_FREQ == 0):
+                            if (PRUNE):
+                                print('This is the {}th of {}pruning, time is {}'.format(
+                                    i,
+                                    cRates,
+                                    datetime.now()
+                                ))
+                            # print("accuracy is {} and cross entropy is {}".format(
+                            #     train_acc,
+                            #     cross_en
+                            # ))
+                            accuracy_list = np.concatenate((np.array([train_acc]),accuracy_list[0:19]))
+                            epoch_acc.append(train_acc)
+                            epoch_entropy.append(cross_en)
+                            if (step%(DISPLAY_FREQ*50) == 0 and step != 0):
+                                train_acc_list.append(train_acc)
+                                model.save_weights()
+                                # file_name_part = compute_file_name(cRates)
+                                # save_pkl_model(weights, biases, weights_dir, 'weights' + file_name_part + '.pkl')
+                                # print("saved the network")
+                                with open ('acc_hist.txt', 'wb') as f:
+                                    for item in epoch_acc:
+                                        f.write("{}\n".format(item))
+                                with open ('entropy_hist.txt', 'wb') as f:
+                                    for item in epoch_entropy:
+                                        f.write("{}\n".format(item))
+                            if (np.mean(accuracy_list) > 0.8):
+                                accuracy_list = np.zeros(20)
+                                test_acc = sess.run(accuracy, feed_dict = {
+                                                        x: images_test,
+                                                        y: labels_test,
+                                                        keep_prob: 1.0})
+                                print('test accuracy is {}'.format(test_acc))
+                                if (test_acc > 0.823):
+                                    print("training accuracy is large, show the list: {}".format(accuracy_list))
+                        _ = sess.run(train_step, feed_dict = {
+                                        x: batch_x,
+                                        y: batch_y,
+                                        keep_prob: dropout})
                     test_acc_list = []
                     for _ in range(val_batches_per_epoch):
                         # Taverse one epoch
