@@ -127,7 +127,7 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
                                        strides = [1, stride_y, stride_x, 1],
                                        padding = padding)
 
-  with tf.variable_scope(name,reuse = True) as scope:
+  with tf.variable_scope(name) as scope:
     # Create tf variables for the weights and biases of the conv layer
     weights = get_scope_variable(scope, 'weights',
             shape = [filter_height, filter_width, input_channels/groups, num_filters],
@@ -161,7 +161,7 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
     return relu
 
 def fc(x, num_in, num_out, name, mask, relu = True):
-  with tf.variable_scope(name, reuse = True) as scope:
+  with tf.variable_scope(name) as scope:
 
     # Create tf variables for the weights and biases
     weights = get_scope_variable(scope, 'weights',
