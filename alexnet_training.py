@@ -228,7 +228,7 @@ def main(argv = None):
         if (save_for_next_iter):
             (weights_mask, biases_mask)= initialize_weights_mask(first_time_load, mask_dir, 'mask'+org_file_name + '.pkl')
         else:
-            (weights_mask, biases_mask)= initialize_weights_mask(first_time_load, mask_dir, 'mask'+file_name_part + '.pkl')
+            (weights_mask, biases_mask)= initialize_weights_mask(True, mask_dir, 'mask'+file_name_part + '.pkl')
 
 
         if (LOCAL_TEST):
