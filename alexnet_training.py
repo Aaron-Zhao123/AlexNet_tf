@@ -391,7 +391,7 @@ def main(argv = None):
                     test_acc_list = []
                     for _ in range(val_batches_per_epoch):
                         # Taverse one epoch
-                        (batch_tx, batch_ty) = test_generator.next_batch(batch_size, meta_data_dir + 'val/')
+                        (batch_tx, batch_ty) = val_generator.next_batch(batch_size, meta_data_dir + 'val/')
                         tmp_acc, c_pred, c_softmax = sess.run([accuracy, score, softmax], feed_dict = {
                             x: batch_tx,
                             y: batch_ty,

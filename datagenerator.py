@@ -58,13 +58,10 @@ class ImageDataGenerator:
 
         #create list of permutated index and shuffle data accoding to list
         idx = np.random.permutation(len(labels))
-        print(images[0:10])
-        print(labels[0:10])
         for i in idx:
             self.images.append(images[i])
             self.labels.append(labels[i])
         print(self.labels[0:10])
-        sys.exit()
 
     def reset_pointer(self):
         """
