@@ -268,7 +268,8 @@ def main(argv = None):
         score = model.fc8
         softmax = tf.nn.softmax(score)
 
-        var_list = [v for v in tf.trainable_variables()]
+        var_list = tf.trainable_variables()
+        var_name_list = [v.name for v in var_list]
 
         with tf.name_scope("cross_ent"):
             loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits = score, labels = y))
@@ -282,7 +283,7 @@ def main(argv = None):
             # grads = opt.compute_gradients(loss)
             # org_grads = [(ClipIfNotNone(grad), var) for grad, var in grads]
             # train_step = opt.apply_gradients(org_grads)
-            print('check var list :{}'.format(var_list))
+            print('check var list :{}'.format(var_name_list))
             gradients = tf.gradients(loss, var_list)
             gradients = list(zip(gradients, var_list))
             opt = tf.train.AdamOptimizer(learning_rate=lr)
