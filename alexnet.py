@@ -127,7 +127,7 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
                                        strides = [1, stride_y, stride_x, 1],
                                        padding = padding)
 
-  with tf.variable_scope(name) as scope:
+  with tf.variable_scope(name,reuse = True) as scope:
     # Create tf variables for the weights and biases of the conv layer
     weights = get_scope_variable(scope, 'weights',
             shape = [filter_height, filter_width, input_channels/groups, num_filters],
@@ -137,7 +137,7 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
     # biases = tf.get_variable('biases', shape = [num_filters], trainable = True)
     biases = get_scope_variable(scope, 'biases',
             shape = [num_filters],
-            initializer=tf.random_normal_initializer())
+            initializer = tf.random_normal_initializer())
 
     if groups == 1:
       conv = convolve(x, new_weights)
@@ -161,7 +161,7 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
     return relu
 
 def fc(x, num_in, num_out, name, mask, relu = True):
-  with tf.variable_scope(name) as scope:
+  with tf.variable_scope(name, reuse = True) as scope:
 
     # Create tf variables for the weights and biases
     weights = get_scope_variable(scope, 'weights',
@@ -169,7 +169,7 @@ def fc(x, num_in, num_out, name, mask, relu = True):
             initializer = tf.truncated_normal_initializer())
     biases = get_scope_variable(scope, 'biases',
             shape = [num_out],
-            initializer=tf.random_normal_initializer())
+            initializer = tf.random_normal_initializer())
     # weights = tf.get_variable('weights', shape=[num_in, num_out], trainable=True)
     # biases = tf.get_variable('biases', [num_out], trainable=True)
     new_weights = weights * mask
