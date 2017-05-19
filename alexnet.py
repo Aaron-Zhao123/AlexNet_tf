@@ -149,7 +149,7 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
     bias = tf.reshape(tf.nn.bias_add(conv, biases), conv.get_shape().as_list())
 
     # Apply relu function
-    relu = tf.nn.relu(bias, name = scope.name)
+    relu = tf.nn.relu(bias, name = name)
     return relu
 
 def fc(x, num_in, num_out, name, mask, relu = True):
@@ -167,7 +167,7 @@ def fc(x, num_in, num_out, name, mask, relu = True):
     new_weights = weights * mask
 
     # Matrix multiply weights and inputs and add bias
-    act = tf.nn.xw_plus_b(x, new_weights, biases, name=scope.name)
+    act = tf.nn.xw_plus_b(x, new_weights, biases, name=name)
 
     if relu == True:
         # Apply ReLu non linearity
