@@ -116,9 +116,6 @@ global layer definitions
 """
 def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, mask,
 		 padding='SAME', groups=1):
-  """
-  Adapted from: https://github.com/ethereon/caffe-tensorflow
-  """
 	# Get number of input channels
 	input_channels = int(x.get_shape()[-1])
 
@@ -127,8 +124,6 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
 									   strides = [1, stride_y, stride_x, 1],
 									   padding = padding)
 
-  # with tf.variable_scope(name) as scope:
-  # Create tf variables for the weights and biases of the conv layer
 	weights = get_scope_variable(name, 'weights',
 		shape = [filter_height, filter_width, input_channels/groups, num_filters],
 		initializer = tf.truncated_normal_initializer())
