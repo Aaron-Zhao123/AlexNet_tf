@@ -120,15 +120,15 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
   Adapted from: https://github.com/ethereon/caffe-tensorflow
   """
   # Get number of input channels
-    input_channels = int(x.get_shape()[-1])
+  input_channels = int(x.get_shape()[-1])
 
   # Create lambda function for the convolution
-    convolve = lambda i, k: tf.nn.conv2d(i, k,
+  convolve = lambda i, k: tf.nn.conv2d(i, k,
                                        strides = [1, stride_y, stride_x, 1],
                                        padding = padding)
 
   # with tf.variable_scope(name) as scope:
-    # Create tf variables for the weights and biases of the conv layer
+  # Create tf variables for the weights and biases of the conv layer
     weights = get_scope_variable(name, 'weights',
         shape = [filter_height, filter_width, input_channels/groups, num_filters],
         initializer = tf.truncated_normal_initializer())
@@ -157,7 +157,6 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
 
     # Apply relu function
     relu = tf.nn.relu(bias, name = scope.name)
-
     return relu
 
 def fc(x, num_in, num_out, name, mask, relu = True):
