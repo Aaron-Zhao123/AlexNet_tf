@@ -268,7 +268,7 @@ def main(argv = None):
         score = model.fc8
         softmax = tf.nn.softmax(score)
 
-        var_list = [v for v in tf.trainable_variables() if v.name.split('/')[0] in train_layers]
+        var_list = [v for v in tf.trainable_variables()]
 
         with tf.name_scope("cross_ent"):
             loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits = score, labels = y))
