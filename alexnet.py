@@ -84,6 +84,7 @@ class AlexNet(object):
               # Weights
               else:
                 if (self.isnew_model):
+                    print('check size {}, is {}'.format(op_name, np.shape(data)))
                     var = tf.get_variable('weights', trainable = True,
                         initializer = tf.truncated_normal_initializer())
                 else:
