@@ -95,10 +95,10 @@ class AlexNet(object):
         print('Saving weights..')
         weights_val = {}
         for op_name in self.layer_names:
-            with tf.variable_scope(op_name, reuse = True) as scope:
-                weights = tf.get_variable('weights')
-                biases = tf.get_variable('biases')
-                weights_val[op_name] = [weights.eval(), biases.eval()]
+            # with tf.variable_scope(op_name, reuse = True) as scope:
+            weights = get_scope_variable(op_name, 'weights')
+            biases = get_scope_variable(op_name, 'biases')
+            weights_val[op_name] = [weights.eval(), biases.eval()]
         np.save(file_name+'.npy', weights_val)
         print('saved at {}'.format(file_name))
 
