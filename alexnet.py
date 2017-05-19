@@ -76,19 +76,21 @@ class AlexNet(object):
               # Biases
               if len(data.shape) == 1:
                 if (self.isnew_model):
-                    var = tf.get_variable('biases', trainable = False,
-                        initializer=tf.random_normal_initializer())
+                    # var = tf.get_variable('biases', shape = data.shape
+                    #     initializer=tf.random_normal_initializer())
+                    pass
                 else:
-                    var = tf.get_variable('biases', trainable = False)
+                    var = tf.get_variable('biases')
                     session.run(var.assign(data))
               # Weights
               else:
                 if (self.isnew_model):
                     print('check size {}, is {}'.format(op_name, np.shape(data)))
-                    var = tf.get_variable('weights', trainable = False,
-                        initializer = tf.truncated_normal_initializer())
+                    # var = tf.get_variable('weights', shape = data.shape
+                    #     initializer = tf.truncated_normal_initializer())
+                    pass
                 else:
-                    var = tf.get_variable('weights', trainable = False)
+                    var = tf.get_variable('weights')
                     session.run(var.assign(data))
 
     def save_weights(self, file_name = 'base'):
@@ -127,19 +129,24 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
 
   with tf.variable_scope(name) as scope:
     # Create tf variables for the weights and biases of the conv layer
-    weights = tf.get_variable('weights', shape = [filter_height, filter_width, input_channels/groups, num_filters], trainable = True)
+    weights = get_scope_variable(scope, 'weights',
+            shape = [filter_height, filter_width, input_channels/groups, num_filters],
+            initializer = tf.truncated_normal_initializer())
+    # weights = tf.get_variable('weights', shape = [filter_height, filter_width, input_channels/groups, num_filters], trainable = True)
     new_weights = weights * mask
-    biases = tf.get_variable('biases', shape = [num_filters], trainable = True)
-
+    # biases = tf.get_variable('biases', shape = [num_filters], trainable = True)
+    biases = get_scope_variable(scope, 'biases',
+            shape = [num_filters],
+            initializer=tf.random_normal_initializer())
 
     if groups == 1:
-      conv = convolve(x, weights)
+      conv = convolve(x, new_weights)
 
     # In the cases of multiple groups, split inputs & weights and
     else:
       # Split input and weights and convolve them separately
       input_groups = tf.split(value=x,num_or_size_splits=groups,  axis=3)
-      weight_groups = tf.split(num_or_size_splits=groups, value=weights, axis = 3)
+      weight_groups = tf.split(num_or_size_splits=groups, value=new_weights, axis = 3)
       output_groups = [convolve(i, k) for i,k in zip(input_groups, weight_groups)]
 
       # Concat the convolved output together again
@@ -157,12 +164,18 @@ def fc(x, num_in, num_out, name, mask, relu = True):
   with tf.variable_scope(name) as scope:
 
     # Create tf variables for the weights and biases
-    weights = tf.get_variable('weights', shape=[num_in, num_out], trainable=True)
-    biases = tf.get_variable('biases', [num_out], trainable=True)
+    weights = get_scope_variable(scope, 'weights',
+            shape = [filter_height, filter_width, input_channels/groups, num_filters],
+            initializer = tf.truncated_normal_initializer())
+    biases = get_scope_variable(scope, 'biases',
+            shape = [num_filters],
+            initializer=tf.random_normal_initializer())
+    # weights = tf.get_variable('weights', shape=[num_in, num_out], trainable=True)
+    # biases = tf.get_variable('biases', [num_out], trainable=True)
     new_weights = weights * mask
 
     # Matrix multiply weights and inputs and add bias
-    act = tf.nn.xw_plus_b(x, weights, biases, name=scope.name)
+    act = tf.nn.xw_plus_b(x, new_weights, biases, name=scope.name)
 
     if relu == True:
       # Apply ReLu non linearity
@@ -183,3 +196,12 @@ def lrn(x, radius, alpha, beta, name, bias=1.0):
 
 def dropout(x, keep_prob):
   return tf.nn.dropout(x, keep_prob)
+
+def get_scope_variable(scope_name, var, shape = None, initializer = None):
+    with tf.variable_scope(scope_name) as scope:
+        try:
+            v = tf.get_variable(var, shape, initializer=initializer)
+        except ValueError:
+            scope.reuse_variables()
+            v = tf.get_variable(var)
+    return v
