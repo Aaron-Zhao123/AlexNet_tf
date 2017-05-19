@@ -133,13 +133,13 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
 
 
     if groups == 1:
-      conv = convolve(x, new_weights)
+      conv = convolve(x, weights)
 
     # In the cases of multiple groups, split inputs & weights and
     else:
       # Split input and weights and convolve them separately
       input_groups = tf.split(value=x,num_or_size_splits=groups,  axis=3)
-      weight_groups = tf.split(num_or_size_splits=groups, value=new_weights, axis = 3)
+      weight_groups = tf.split(num_or_size_splits=groups, value=weights, axis = 3)
       output_groups = [convolve(i, k) for i,k in zip(input_groups, weight_groups)]
 
       # Concat the convolved output together again
@@ -162,7 +162,7 @@ def fc(x, num_in, num_out, name, mask, relu = True):
     new_weights = weights * mask
 
     # Matrix multiply weights and inputs and add bias
-    act = tf.nn.xw_plus_b(x, new_weights, biases, name=scope.name)
+    act = tf.nn.xw_plus_b(x, weights, biases, name=scope.name)
 
     if relu == True:
       # Apply ReLu non linearity
