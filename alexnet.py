@@ -8,7 +8,6 @@ class AlexNet(object):
 		self.NUM_CLASSES = num_classes
 		self.KEEP_PROB = keep_prob
 		self.layer_names = []
-
 		if (new_model):
 		  self.isnew_model = True
 		  self.WEIGHTS_PATH = 'bvlc_alexnet.npy'
