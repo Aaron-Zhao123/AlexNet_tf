@@ -305,7 +305,6 @@ def main(argv = None):
             sess.run(init)
             epoch_acc = []
             epoch_entropy = []
-            weights_mask = model.load_initial_weights(sess)
 
             if (TRAIN):
                 print("{} Start training...".format(datetime.now()))
