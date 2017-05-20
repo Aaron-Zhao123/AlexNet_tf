@@ -63,6 +63,16 @@ conv_network	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def
 max_pool	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def max_pool(x, filter_height, filter_width, stride_y, stride_x, name, padding='VALID'):$/;"	function	line:142
 lrn	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def lrn(x, radius, alpha, beta, name, bias=1.0):$/;"	function	line:147
 dropout	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def dropout(x, keep_prob):$/;"	function	line:151
+np	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^import numpy as np$/;"	namespace	line:1
+cv2	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^import cv2$/;"	namespace	line:2
+copy	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^import copy$/;"	namespace	line:3
+sys	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^import sys$/;"	namespace	line:4
+ImageDataGenerator	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^class ImageDataGenerator:$/;"	class	line:16
+__init__	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def __init__(self, class_list, horizontal_flip=False, shuffle=False,$/;"	member	line:17	class:ImageDataGenerator
+read_class_list	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def read_class_list(self,class_list):$/;"	member	line:35	class:ImageDataGenerator
+shuffle_data	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def shuffle_data(self):$/;"	member	line:51	class:ImageDataGenerator
+reset_pointer	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def reset_pointer(self):$/;"	member	line:66	class:ImageDataGenerator
+next_batch	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def next_batch(self, batch_size, parent_dir):$/;"	member	line:76	class:ImageDataGenerator
 tf	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^import tensorflow as tf$/;"	namespace	line:1
 np	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^import numpy as np$/;"	namespace	line:2
 sys	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^import sys$/;"	namespace	line:3
@@ -85,13 +95,3 @@ calculate_non_zero_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_t
 ClipIfNotNone	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def ClipIfNotNone(grad):$/;"	function	line:104
 compute_file_name	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def compute_file_name(thresholds):$/;"	function	line:109
 main	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def main(argv = None):$/;"	function	line:123
-np	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^import numpy as np$/;"	namespace	line:1
-cv2	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^import cv2$/;"	namespace	line:2
-copy	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^import copy$/;"	namespace	line:3
-sys	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^import sys$/;"	namespace	line:4
-ImageDataGenerator	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^class ImageDataGenerator:$/;"	class	line:16
-__init__	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def __init__(self, class_list, horizontal_flip=False, shuffle=False,$/;"	member	line:17	class:ImageDataGenerator
-read_class_list	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def read_class_list(self,class_list):$/;"	member	line:35	class:ImageDataGenerator
-shuffle_data	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def shuffle_data(self):$/;"	member	line:51	class:ImageDataGenerator
-reset_pointer	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def reset_pointer(self):$/;"	member	line:66	class:ImageDataGenerator
-next_batch	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def next_batch(self, batch_size, parent_dir):$/;"	member	line:76	class:ImageDataGenerator
