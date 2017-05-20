@@ -30,7 +30,6 @@ class ImageDataGenerator:
 
         if self.shuffle:
             self.shuffle_data()
-            sys.exit()
 
     def read_class_list(self,class_list):
         """
@@ -104,6 +103,8 @@ class ImageDataGenerator:
             images[i] = img
 
         # Expand labels to one hot encoding
+        print(labels)
+        sys.exit()
         one_hot_labels = np.zeros((batch_size, self.n_classes))
         for i in range(len(labels)):
             one_hot_labels[i][labels[i]] = 1
