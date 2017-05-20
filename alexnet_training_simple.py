@@ -227,7 +227,7 @@ def main(argv = None):
         #
         weights, biases = alexnet_simple.initialize_variables(new_model = True)
 
-        x = tf.placeholder(tf.float32, [batch_size, 227, 227, 3])
+        x = tf.placeholder(tf.float32, [None, 227, 227, 3])
         y = tf.placeholder(tf.float32, [None, num_classes])
         keep_prob = tf.placeholder(tf.float32)
 
