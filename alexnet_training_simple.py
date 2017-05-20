@@ -324,7 +324,7 @@ def main(argv = None):
                                         keep_prob: 1.0})
                         # print("size of score {}".format(np.shape(score_val)))
                         print("pred {}".format(test_val))
-                        print("actual {}".format(test_val))
+                        print("actual {}".format(batch_y))
 
                         train_acc, cross_en = sess.run([accuracy, loss], feed_dict = {
                                         x: batch_x,
