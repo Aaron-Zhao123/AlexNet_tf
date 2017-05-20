@@ -263,6 +263,7 @@ def main(argv = None):
 
 
         with tf.name_scope("accuracy"):
+            check = tf.argmax(score,1)
             correct_prediction = tf.equal(tf.argmax(score,1), tf.argmax(y,1))
             accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
@@ -317,12 +318,12 @@ def main(argv = None):
                         (batch_x, batch_y) = train_generator.next_batch(batch_size, meta_data_dir+'train/')
                         # print("size of x {}".format(np.shape(batch_x)))
                         # print("size of y {}".format(np.shape(batch_y)))
-                        score_val,test_val = sess.run([score,test_conv], feed_dict = {
+                        test_val = sess.run([check], feed_dict = {
                                         x: batch_x,
                                         y: batch_y,
                                         keep_prob: 1.0})
                         # print("size of score {}".format(np.shape(score_val)))
-                        # print("size of test{}".format(np.shape(test_val)))
+                        print("size of test{}".format(test_val))
 
                         train_acc, cross_en = sess.run([accuracy, loss], feed_dict = {
                                         x: batch_x,
