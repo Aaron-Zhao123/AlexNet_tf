@@ -17,13 +17,13 @@ def initialize_weights_mask(first_time_training, mask_dir, file_name):
             'fc8': np.ones([4096, NUM_CLASSES])
         }
         biases_mask = {
-            'conv1': np.ones([64]),
-            'conv2': np.ones([64]),
-            'conv3': np.ones([64]),
-            'conv4': np.ones([64]),
-            'conv5': np.ones([64]),
-            'fc6': np.ones([384]),
-            'fc7': np.ones([192]),
+            'conv1': np.ones([96]),
+            'conv2': np.ones([256]),
+            'conv3': np.ones([384]),
+            'conv4': np.ones([256]),
+            'conv5': np.ones([256]),
+            'fc6': np.ones([4096]),
+            'fc7': np.ones([4096]),
             'fc8': np.ones([NUM_CLASSES])
         }
 
