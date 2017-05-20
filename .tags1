@@ -4,23 +4,17 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-os	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import os$/;"	namespace	line:1
-alexnet_training_simple	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import alexnet_training_simple$/;"	namespace	line:2
-alexnet_training	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import alexnet_training$/;"	namespace	line:3
-sys	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import sys$/;"	namespace	line:4
-download	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import download$/;"	namespace	line:5
-compute_file_name	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^def compute_file_name(p):$/;"	function	line:7
-acc_list	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^acc_list = []$/;"	variable	line:16
-count	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^count = 0$/;"	variable	line:17
-retrain	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^retrain = 0$/;"	variable	line:18
-parent_dir	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^parent_dir = 'assets\/'$/;"	variable	line:19
-lr	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^lr = 1e-4$/;"	variable	line:21
-crates	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^crates = {$/;"	variable	line:22
-retrain_cnt	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^retrain_cnt = 0$/;"	variable	line:30
-roundrobin	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^roundrobin = 0$/;"	variable	line:31
-with_biases	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^with_biases = False$/;"	variable	line:32
-url	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^url = 'http:\/\/www.cs.toronto.edu\/~guerzhoy\/tf_alexnet\/bvlc_alexnet.npy'$/;"	variable	line:35
-download_dir	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^download_dir = '.'$/;"	variable	line:36
-INITIAL_TRAIN	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^INITIAL_TRAIN = True$/;"	variable	line:38
-param	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^    param = [$/;"	variable	line:41
-_	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^    _ = alexnet_training.main(param)$/;"	variable	line:56
+tf	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^import tensorflow as tf$/;"	namespace	line:1
+np	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^import numpy as np$/;"	namespace	line:2
+AlexNet	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^class AlexNet(object):$/;"	class	line:4
+__init__	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def __init__ (self, x, keep_prob, num_classes, weights_mask, weights_path = 'DEFAULT', new_model = False):$/;"	member	line:5	class:AlexNet
+create	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def create(self, weights_mask):$/;"	member	line:22	class:AlexNet
+load_initial_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def load_initial_weights(self, session):$/;"	member	line:59	class:AlexNet
+save_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def save_weights(self, file_name = 'base'):$/;"	member	line:98	class:AlexNet
+mask_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def mask_weights(self, weights_mask, session):$/;"	member	line:109	class:AlexNet
+conv	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, mask,$/;"	function	line:119
+fc	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def fc(x, num_in, num_out, name, mask, relu = True):$/;"	function	line:159
+max_pool	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def max_pool(x, filter_height, filter_width, stride_y, stride_x, name, padding='SAME'):$/;"	function	line:184
+lrn	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def lrn(x, radius, alpha, beta, name, bias=1.0):$/;"	function	line:189
+dropout	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def dropout(x, keep_prob):$/;"	function	line:193
+get_scope_variable	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def get_scope_variable(scope_name, var, shape = None, initializer = None):$/;"	function	line:196
