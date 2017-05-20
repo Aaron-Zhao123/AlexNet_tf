@@ -36,6 +36,8 @@ def initialize_weights_mask(first_time_training, mask_dir, file_name):
     return (weights_mask, biases_mask)
 
 def initialize_variables(new_model = False, weights_path = 'DEFAULT'):
+    NUM_CHANNELS = 3
+    NUM_CLASSES = 1000
     keys = ['conv1', 'conv2', 'conv3', 'conv4', 'conv5', 'fc6', 'fc7', 'fc8']
     if (new_model):
         if (weights_path == 'DEFAULT'):
