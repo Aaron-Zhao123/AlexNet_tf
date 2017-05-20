@@ -146,7 +146,7 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
     #     conv = tf.concat(values = output_groups, axis = 3)
     #
 
-    conv = tf.nn.conv2d(x, new_weights, [1, 1, 1, 1],
+    conv = tf.nn.conv2d(x, new_weights,
         strides = [1, stride_y, stride_x, 1],
         padding = padding)
     # Add biases
