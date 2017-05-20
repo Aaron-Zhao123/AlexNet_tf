@@ -108,19 +108,19 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     print(pool2.get_shape())
 
     #conv3
-    conv = tf.nn.conv2d(norm2, weights['conv3'], [1, 1, 1, 1], padding='VALID')
+    conv = tf.nn.conv2d(norm2, weights['conv3'], [1, 1, 1, 1], padding='SAME')
     pre_activation = tf.nn.bias_add(conv, biases['conv3'])
     conv3 = tf.nn.relu(pre_activation)
     # conv3 = tf.nn.relu(tf.reshape(pre_activation,conv.get_shape().as_list()))
 
     #conv4
-    conv = tf.nn.conv2d(conv3, weights['conv4'], [1, 1, 1, 1], padding='VALID')
+    conv = tf.nn.conv2d(conv3, weights['conv4'], [1, 1, 1, 1], padding='SAME')
     pre_activation = tf.nn.bias_add(conv, biases['conv4'])
     conv4 = tf.nn.relu(pre_activation)
     # conv4 = tf.nn.relu(tf.reshape(pre_activation,conv.get_shape().as_list()))
 
     #conv5
-    conv = tf.nn.conv2d(conv4, weights['conv5'], [1, 1, 1, 1], padding='VALID')
+    conv = tf.nn.conv2d(conv4, weights['conv5'], [1, 1, 1, 1], padding='SAME')
     pre_activation = tf.nn.bias_add(conv, biases['conv5'])
     conv5 = tf.nn.relu(pre_activation)
     pool5 = max_pool(conv5, 3, 3, 2, 2, padding = 'VALID', name = 'pool5')
