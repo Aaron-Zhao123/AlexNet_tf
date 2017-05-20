@@ -118,10 +118,10 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
     input_channels = int(x.get_shape()[-1])
 
     # Create lambda function for the convolution
-    convolve = lambda i, k: tf.nn.conv2d(i, k,
-                                                                       strides = [1, stride_y, stride_x, 1],
-                                                                       padding = padding)
-
+    # convolve = lambda i, k: tf.nn.conv2d(i, k,
+    #                                                                    strides = [1, stride_y, stride_x, 1],
+    #                                                                    padding = padding)
+    #
     weights = get_scope_variable(name, 'weights',
             shape = [filter_height, filter_width, input_channels/groups, num_filters],
             initializer = tf.truncated_normal_initializer())
@@ -132,24 +132,29 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
             shape = [num_filters],
             initializer = tf.random_normal_initializer())
 
-    if groups == 1:
-        conv = convolve(x, new_weights)
+    # if groups == 1:
+    #     conv = convolve(x, new_weights)
+    #
+    # # In the cases of multiple groups, split inputs & weights and
+    # else:
+    #     # Split input and weights and convolve them separately
+    #     input_groups = tf.split(value=x,num_or_size_splits=groups,  axis=3)
+    #     weight_groups = tf.split(num_or_size_splits=groups, value=new_weights, axis = 3)
+    #     output_groups = [convolve(i, k) for i,k in zip(input_groups, weight_groups)]
+    #
+    #     # Concat the convolved output together again
+    #     conv = tf.concat(values = output_groups, axis = 3)
+    #
 
-    # In the cases of multiple groups, split inputs & weights and
-    else:
-        # Split input and weights and convolve them separately
-        input_groups = tf.split(value=x,num_or_size_splits=groups,  axis=3)
-        weight_groups = tf.split(num_or_size_splits=groups, value=new_weights, axis = 3)
-        output_groups = [convolve(i, k) for i,k in zip(input_groups, weight_groups)]
-
-        # Concat the convolved output together again
-        conv = tf.concat(values = output_groups, axis = 3)
-
+    conv = tf.nn.conv2d(x, new_weights, [1, 1, 1, 1],
+        strides = [1, stride_y, stride_x, 1],
+        padding = padding)
     # Add biases
-    bias = tf.reshape(tf.nn.bias_add(conv, biases), conv.get_shape().as_list())
+    # bias = tf.reshape(tf.nn.bias_add(conv, biases), conv.get_shape().as_list())
+    pre_activation = tf.nn.bias_add(conv, biases)
 
     # Apply relu function
-    relu = tf.nn.relu(bias, name = name)
+    relu = tf.nn.relu(pre_activation, name = name)
     return relu
 
 def fc(x, num_in, num_out, name, mask, relu = True):
@@ -167,7 +172,8 @@ def fc(x, num_in, num_out, name, mask, relu = True):
     new_weights = weights * mask
 
     # Matrix multiply weights and inputs and add bias
-    act = tf.nn.xw_plus_b(x, new_weights, biases, name=name)
+    act = tf.matmul(x, new_weights) + biases
+    # act = tf.nn.xw_plus_b(x, new_weights, biases, name=name)
 
     if relu == True:
         # Apply ReLu non linearity
@@ -184,7 +190,7 @@ def max_pool(x, filter_height, filter_width, stride_y, stride_x, name, padding='
 
 def lrn(x, radius, alpha, beta, name, bias=1.0):
     return tf.nn.local_response_normalization(x, depth_radius = radius, alpha = alpha,
-                                                                                          beta = beta, bias = bias, name = name)
+          beta = beta, bias = bias, name = name)
 
 def dropout(x, keep_prob):
     return tf.nn.dropout(x, keep_prob)

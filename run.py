@@ -39,11 +39,12 @@ if (INITIAL_TRAIN):
     # TRAIN
     param = [
         ('-cRates', crates),
-        ('-first_time', False),
+        ('-first_time', True),
         # ('-first_time', False),
-        ('-train', False),
+        # ('-train', False),
+        ('-train', True),
         ('-prune', False),
-        ('-test', True),
+        # ('-test', True),
         ('-lr', lr),
         ('-with_biases', with_biases),
         ('-parent_dir', parent_dir),

@@ -400,7 +400,7 @@ def main(argv = None):
                         test_acc_list.append(tmp_acc)
                     test_acc_list = np.array(test_acc_list)
                     test_acc = np.mean(test_acc_list)
-                    print("Validation Accuracy = {:.4f}".format(datetime.now(), test_acc))
+                    print("Time {}, Validation Accuracy = {}".format(datetime.now(), test_acc))
 
 
             if (TEST):
