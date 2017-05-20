@@ -317,6 +317,11 @@ def main(argv = None):
                         (batch_x, batch_y) = train_generator.next_batch(batch_size, meta_data_dir+'train/')
                         print("size of x {}".format(np.shape(batch_x)))
                         print("size of y {}".format(np.shape(batch_y)))
+                        score_val = sess.run(score, feed_dict = {
+                                        x: batch_x,
+                                        y: batch_y,
+                                        keep_prob: 1.0})
+                        print("size of score {}".format(np.shape(score)))
 
                         train_acc, cross_en = sess.run([accuracy, loss], feed_dict = {
                                         x: batch_x,
