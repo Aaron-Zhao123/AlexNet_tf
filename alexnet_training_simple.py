@@ -345,7 +345,7 @@ def main(argv = None):
                             accuracy_list = np.concatenate((np.array([train_acc]),accuracy_list[0:19]))
                             epoch_acc.append(train_acc)
                             epoch_entropy.append(cross_en)
-                            if (step%(DISPLAY_FREQ*20) == 0 and step != 0):
+                            if (step%(DISPLAY_FREQ*50) == 0 and step != 0):
                                 train_acc_list.append(train_acc)
                                 alexnet_simple.save_weights(weights, biases)
                                 # file_name_part = compute_file_name(cRates)
@@ -357,15 +357,15 @@ def main(argv = None):
                                 with open ('entropy_hist.txt', 'wb') as f:
                                     for item in epoch_entropy:
                                         f.write("{}\n".format(item))
-                            if (np.mean(accuracy_list) > 0.8):
-                                accuracy_list = np.zeros(20)
-                                test_acc = sess.run(accuracy, feed_dict = {
-                                                        x: images_test,
-                                                        y: labels_test,
-                                                        keep_prob: 1.0})
-                                print('test accuracy is {}'.format(test_acc))
-                                if (test_acc > 0.823):
-                                    print("training accuracy is large, show the list: {}".format(accuracy_list))
+                            # if (np.mean(accuracy_list) > 0.8):
+                            #     accuracy_list = np.zeros(20)
+                            #     test_acc = sess.run(accuracy, feed_dict = {
+                            #                             x: images_test,
+                            #                             y: labels_test,
+                            #                             keep_prob: 1.0})
+                            #     print('test accuracy is {}'.format(test_acc))
+                            #     if (test_acc > 0.823):
+                            #         print("training accuracy is large, show the list: {}".format(accuracy_list))
                         _ = sess.run(train_step, feed_dict = {
                                         x: batch_x,
                                         y: batch_y,
