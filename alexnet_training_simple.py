@@ -313,7 +313,7 @@ def main(argv = None):
                     for step in range(train_batches_per_epoch):
                         print("batch size {}".format(batch_size))
                         (batch_x, batch_y) = train_generator.next_batch(batch_size, meta_data_dir+'train/')
-                        print("size of x {}".format(np.shape(batch_y)))
+                        print("size of x {}".format(np.shape(batch_x)))
                         print("size of y {}".format(np.shape(batch_y)))
 
                         train_acc, cross_en = sess.run([accuracy, loss], feed_dict = {
