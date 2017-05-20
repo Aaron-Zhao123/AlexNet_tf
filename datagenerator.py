@@ -30,6 +30,7 @@ class ImageDataGenerator:
 
         if self.shuffle:
             self.shuffle_data()
+            sys.exit()
 
     def read_class_list(self,class_list):
         """
@@ -61,8 +62,6 @@ class ImageDataGenerator:
         for i in idx:
             self.images.append(images[i])
             self.labels.append(labels[i])
-        print(self.labels[0:10])
-        sys.exit()
 
     def reset_pointer(self):
         """

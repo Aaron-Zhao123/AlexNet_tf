@@ -10,7 +10,7 @@ copy	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^import copy$
 sys	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^import sys$/;"	namespace	line:4
 ImageDataGenerator	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^class ImageDataGenerator:$/;"	class	line:16
 __init__	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def __init__(self, class_list, horizontal_flip=False, shuffle=False,$/;"	member	line:17	class:ImageDataGenerator
-read_class_list	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def read_class_list(self,class_list):$/;"	member	line:34	class:ImageDataGenerator
-shuffle_data	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def shuffle_data(self):$/;"	member	line:50	class:ImageDataGenerator
-reset_pointer	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def reset_pointer(self):$/;"	member	line:67	class:ImageDataGenerator
-next_batch	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def next_batch(self, batch_size, parent_dir):$/;"	member	line:77	class:ImageDataGenerator
+read_class_list	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def read_class_list(self,class_list):$/;"	member	line:35	class:ImageDataGenerator
+shuffle_data	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def shuffle_data(self):$/;"	member	line:51	class:ImageDataGenerator
+reset_pointer	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def reset_pointer(self):$/;"	member	line:66	class:ImageDataGenerator
+next_batch	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def next_batch(self, batch_size, parent_dir):$/;"	member	line:76	class:ImageDataGenerator
