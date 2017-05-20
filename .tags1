@@ -9,6 +9,6 @@ np	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^import numpy 
 initialize_weights_mask	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def initialize_weights_mask(first_time_training, mask_dir, file_name):$/;"	function	line:4
 initialize_variables	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def initialize_variables(new_model = False, weights_path = 'DEFAULT'):$/;"	function	line:38
 conv_network	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def conv_network(images, weights, biases, keep_prob, batch_size = 128):$/;"	function	line:86
-max_pool	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def max_pool(x, filter_height, filter_width, stride_y, stride_x, name, padding='SAME'):$/;"	function	line:134
-lrn	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def lrn(x, radius, alpha, beta, name, bias=1.0):$/;"	function	line:139
-dropout	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def dropout(x, keep_prob):$/;"	function	line:143
+max_pool	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def max_pool(x, filter_height, filter_width, stride_y, stride_x, name, padding='SAME'):$/;"	function	line:137
+lrn	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def lrn(x, radius, alpha, beta, name, bias=1.0):$/;"	function	line:142
+dropout	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def dropout(x, keep_prob):$/;"	function	line:146
