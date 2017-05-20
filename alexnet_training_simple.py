@@ -345,7 +345,7 @@ def main(argv = None):
                             accuracy_list = np.concatenate((np.array([train_acc]),accuracy_list[0:19]))
                             epoch_acc.append(train_acc)
                             epoch_entropy.append(cross_en)
-                            if (step%(DISPLAY_FREQ) == 0 and step != 0):
+                            if (step%(DISPLAY_FREQ*20) == 0 and step != 0):
                                 train_acc_list.append(train_acc)
                                 alexnet_simple.save_weights(weights, biases)
                                 # file_name_part = compute_file_name(cRates)
