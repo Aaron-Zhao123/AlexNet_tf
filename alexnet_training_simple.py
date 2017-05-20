@@ -225,6 +225,7 @@ def main(argv = None):
         #     weights, biases = initialize_variables( PREV_MODEL_EXIST,
         #                                             weights_dir + 'weights' + file_name_part + '.pkl')
         #
+        batch_size = 128
         weights, biases = alexnet_simple.initialize_variables(new_model = True)
 
         x = tf.placeholder(tf.float32, [None, 227, 227, 3])
