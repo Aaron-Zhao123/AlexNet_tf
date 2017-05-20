@@ -347,7 +347,7 @@ def main(argv = None):
                             epoch_entropy.append(cross_en)
                             if (step%(DISPLAY_FREQ*50) == 0 and step != 0):
                                 train_acc_list.append(train_acc)
-                                model.save_weights()
+                                alexnet_simple.save_weights(weights, biases)
                                 # file_name_part = compute_file_name(cRates)
                                 # save_pkl_model(weights, biases, weights_dir, 'weights' + file_name_part + '.pkl')
                                 # print("saved the network")
