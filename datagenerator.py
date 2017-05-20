@@ -62,6 +62,7 @@ class ImageDataGenerator:
             self.images.append(images[i])
             self.labels.append(labels[i])
         print(self.labels[0:10])
+        sys.exit()
 
     def reset_pointer(self):
         """
