@@ -225,7 +225,7 @@ def main(argv = None):
         #     weights, biases = initialize_variables( PREV_MODEL_EXIST,
         #                                             weights_dir + 'weights' + file_name_part + '.pkl')
         #
-        weights, biases = alexnet_simple.initialize_variables(new_model = True):
+        weights, biases = alexnet_simple.initialize_variables(new_model = True)
 
         x = tf.placeholder(tf.float32, [batch_size, 227, 227, 3])
         y = tf.placeholder(tf.float32, [None, num_classes])
@@ -235,7 +235,7 @@ def main(argv = None):
         # model = AlexNet(x, keep_prob, num_classes, weights_mask, new_model = first_time_load)
 
 
-        score = alexnet_simple.conv_network(x, weights, biases, keep_prob, batch_size = batch_size):
+        score = alexnet_simple.conv_network(x, weights, biases, keep_prob, batch_size = batch_size)
         softmax = tf.nn.softmax(score)
 
         var_list = tf.trainable_variables()
