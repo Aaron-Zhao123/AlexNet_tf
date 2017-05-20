@@ -97,9 +97,8 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     conv = tf.nn.conv2d(norm1, weights['conv2'], [1, 1, 1, 1], padding='VALID')
     pre_activation = tf.nn.bias_add(conv, biases['conv2'])
     conv2 = tf.nn.relu(pre_activation)
-
-    pool2 = max_pool(conv2, 3, 3, 2, 2, padding = 'VALID', name = 'pool1')
-    norm2 = lrn(pool2, 2, 2e-05, 0.75, name = 'norm1')
+    pool2 = max_pool(conv2, 3, 3, 2, 2, padding = 'VALID', name = 'pool2')
+    norm2 = lrn(pool2, 2, 2e-05, 0.75, name = 'norm2')
 
     #conv3
     conv = tf.nn.conv2d(norm2, weights['conv3'], [1, 1, 1, 1], padding='VALID')
