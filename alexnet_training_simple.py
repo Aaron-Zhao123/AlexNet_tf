@@ -313,16 +313,16 @@ def main(argv = None):
                 for i in range(0,epochs):
                     print("{} Epoch number: {}".format(datetime.now(), i+1))
                     for step in range(train_batches_per_epoch):
-                        print("batch size {}".format(batch_size))
+                        # print("batch size {}".format(batch_size))
                         (batch_x, batch_y) = train_generator.next_batch(batch_size, meta_data_dir+'train/')
-                        print("size of x {}".format(np.shape(batch_x)))
-                        print("size of y {}".format(np.shape(batch_y)))
+                        # print("size of x {}".format(np.shape(batch_x)))
+                        # print("size of y {}".format(np.shape(batch_y)))
                         score_val,test_val = sess.run([score,test_conv], feed_dict = {
                                         x: batch_x,
                                         y: batch_y,
                                         keep_prob: 1.0})
-                        print("size of score {}".format(np.shape(score_val)))
-                        print("size of test{}".format(np.shape(test_val)))
+                        # print("size of score {}".format(np.shape(score_val)))
+                        # print("size of test{}".format(np.shape(test_val)))
 
                         train_acc, cross_en = sess.run([accuracy, loss], feed_dict = {
                                         x: batch_x,
@@ -336,10 +336,10 @@ def main(argv = None):
                                     cRates,
                                     datetime.now()
                                 ))
-                            # print("accuracy is {} and cross entropy is {}".format(
-                            #     train_acc,
-                            #     cross_en
-                            # ))
+                            print("accuracy is {} and cross entropy is {}".format(
+                                train_acc,
+                                cross_en
+                            ))
                             accuracy_list = np.concatenate((np.array([train_acc]),accuracy_list[0:19]))
                             epoch_acc.append(train_acc)
                             epoch_entropy.append(cross_en)
