@@ -38,10 +38,10 @@ def initialize_weights_mask(first_time_training, mask_dir, file_name):
         print('setting initial mask value')
         weights_mask = {
             'conv1': np.ones([11, 11, NUM_CHANNELS, 96]),
-            'conv2': np.ones([5, 5, 96, 256]),
+            'conv2': np.ones([5, 5, 48, 256]),
             'conv3': np.ones([3, 3, 256, 384]),
-            'conv4': np.ones([3, 3, 384, 384]),
-            'conv5': np.ones([3, 3, 384, 256]),
+            'conv4': np.ones([3, 3, 192, 384]),
+            'conv5': np.ones([3, 3, 192, 256]),
             'fc6': np.ones([6 * 6 * 256, 4096]),
             'fc7': np.ones([4096, 4096]),
             'fc8': np.ones([4096, NUM_CLASSES])
@@ -357,10 +357,10 @@ def main(argv = None):
                                     cRates,
                                     datetime.now()
                                 ))
-                            print("accuracy is {} and cross entropy is {}".format(
-                                train_acc,
-                                cross_en
-                            ))
+                            # print("accuracy is {} and cross entropy is {}".format(
+                            #     train_acc,
+                            #     cross_en
+                            # ))
                             accuracy_list = np.concatenate((np.array([train_acc]),accuracy_list[0:19]))
                             epoch_acc.append(train_acc)
                             epoch_entropy.append(cross_en)
