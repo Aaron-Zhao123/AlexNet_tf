@@ -237,6 +237,7 @@ def main(argv = None):
 
 
         score = alexnet_simple.conv_network(x, weights, biases, keep_prob, batch_size = batch_size)
+        print('score shape is {}'.format(score.shape())
         softmax = tf.nn.softmax(score)
 
         var_list = tf.trainable_variables()
