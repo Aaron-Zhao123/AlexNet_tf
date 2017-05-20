@@ -1,0 +1,110 @@
+np	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^import numpy as np$/;"	namespace	line:1
+cv2	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^import cv2$/;"	namespace	line:2
+copy	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^import copy$/;"	namespace	line:3
+sys	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^import sys$/;"	namespace	line:4
+ImageDataGenerator	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^class ImageDataGenerator:$/;"	class	line:16
+__init__	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def __init__(self, class_list, horizontal_flip=False, shuffle=False,$/;"	member	line:17	class:ImageDataGenerator
+read_class_list	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def read_class_list(self,class_list):$/;"	member	line:34	class:ImageDataGenerator
+shuffle_data	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def shuffle_data(self):$/;"	member	line:50	class:ImageDataGenerator
+reset_pointer	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def reset_pointer(self):$/;"	member	line:66	class:ImageDataGenerator
+next_batch	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def next_batch(self, batch_size, parent_dir):$/;"	member	line:76	class:ImageDataGenerator
+os	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import os$/;"	namespace	line:1
+alexnet_training	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import alexnet_training$/;"	namespace	line:2
+sys	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import sys$/;"	namespace	line:3
+download	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import download$/;"	namespace	line:4
+compute_file_name	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^def compute_file_name(p):$/;"	function	line:6
+acc_list	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^acc_list = []$/;"	variable	line:15
+count	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^count = 0$/;"	variable	line:16
+retrain	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^retrain = 0$/;"	variable	line:17
+parent_dir	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^parent_dir = 'assets\/'$/;"	variable	line:18
+lr	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^lr = 1e-4$/;"	variable	line:20
+crates	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^crates = {$/;"	variable	line:21
+retrain_cnt	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^retrain_cnt = 0$/;"	variable	line:29
+roundrobin	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^roundrobin = 0$/;"	variable	line:30
+with_biases	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^with_biases = False$/;"	variable	line:31
+url	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^url = 'http:\/\/www.cs.toronto.edu\/~guerzhoy\/tf_alexnet\/bvlc_alexnet.npy'$/;"	variable	line:34
+download_dir	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^download_dir = '.'$/;"	variable	line:35
+INITIAL_TRAIN	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^INITIAL_TRAIN = True$/;"	variable	line:37
+param	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^    param = [$/;"	variable	line:40
+_	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^    _ = alexnet_training.main(param)$/;"	variable	line:54
+count	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^    count = 0$/;"	variable	line:60
+iter_cnt	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^    iter_cnt = 0$/;"	variable	line:61
+lr	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^            lr = 5e-5$/;"	variable	line:64
+lr	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^            lr = 1e-5$/;"	variable	line:66
+lr	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^            lr = 1e-4$/;"	variable	line:68
+param	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^        param = [$/;"	variable	line:69
+param	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^        param = [$/;"	variable	line:83
+_	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^        _ = alexnet_training.main(param)$/;"	variable	line:94
+param	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^        param = [$/;"	variable	line:97
+acc	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^        acc = alexnet_training.main(param)$/;"	variable	line:109
+file_name	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^            file_name = compute_file_name(crates)$/;"	variable	line:113
+param	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^            param = [$/;"	variable	line:121
+_	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^            _ = train.main(param)$/;"	variable	line:135
+iter_cnt	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^            iter_cnt = iter_cnt + 1$/;"	variable	line:138
+tf	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^import tensorflow as tf$/;"	namespace	line:1
+np	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^import numpy as np$/;"	namespace	line:2
+sys	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^import sys$/;"	namespace	line:3
+os	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^import os$/;"	namespace	line:4
+pickle	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^import pickle$/;"	namespace	line:5
+time	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^import time$/;"	namespace	line:6
+getopt	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^import getopt$/;"	namespace	line:7
+cv2	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^import cv2$/;"	namespace	line:8
+datetime	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^from datetime import datetime$/;"	namespace	line:9
+AlexNet	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^from alexnet import AlexNet$/;"	namespace	line:11
+class_names	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^from caffe_classes import class_names$/;"	namespace	line:12
+ImageDataGenerator	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^from datagenerator import ImageDataGenerator$/;"	namespace	line:13
+Usage	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^class Usage(Exception):$/;"	class	line:17
+__init__	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^    def __init__ (self,msg):$/;"	member	line:18	class:Usage
+prune_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^def prune_weights(cRates, weights, weights_mask, biases, biases_mask, mask_dir, f_name):$/;"	function	line:21
+initialize_weights_mask	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^def initialize_weights_mask(first_time_training, mask_dir, file_name):$/;"	function	line:34
+prune_info	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^def prune_info(weights, counting):$/;"	function	line:68
+plot_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^def plot_weights(weights,pruning_info):$/;"	function	line:97
+save_pkl_model	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^def save_pkl_model(weights, biases, save_dir ,f_name):$/;"	function	line:120
+calculate_non_zero_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^def calculate_non_zero_weights(weight):$/;"	function	line:131
+ClipIfNotNone	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^def ClipIfNotNone(grad):$/;"	function	line:136
+compute_file_name	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^def compute_file_name(thresholds):$/;"	function	line:141
+main	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^def main(argv = None):$/;"	function	line:155
+tf	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^import tensorflow as tf$/;"	namespace	line:1
+np	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^import numpy as np$/;"	namespace	line:2
+AlexNet	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^class AlexNet(object):$/;"	class	line:4
+__init__	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def __init__ (self, x, keep_prob, num_classes, weights_mask, weights_path = 'DEFAULT', new_model = False):$/;"	member	line:5	class:AlexNet
+create	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def create(self, weights_mask):$/;"	member	line:22	class:AlexNet
+load_initial_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def load_initial_weights(self, session):$/;"	member	line:55	class:AlexNet
+save_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def save_weights(self, file_name = 'base'):$/;"	member	line:94	class:AlexNet
+mask_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def mask_weights(self, weights_mask, session):$/;"	member	line:105	class:AlexNet
+conv	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, mask,$/;"	function	line:115
+fc	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def fc(x, num_in, num_out, name, mask, relu = True):$/;"	function	line:155
+max_pool	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def max_pool(x, filter_height, filter_width, stride_y, stride_x, name, padding='SAME'):$/;"	function	line:180
+lrn	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def lrn(x, radius, alpha, beta, name, bias=1.0):$/;"	function	line:185
+dropout	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def dropout(x, keep_prob):$/;"	function	line:189
+get_scope_variable	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def get_scope_variable(scope_name, var, shape = None, initializer = None):$/;"	function	line:192
+tf	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^import tensorflow as tf$/;"	namespace	line:1
+np	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^import numpy as np$/;"	namespace	line:2
+initialize_weights_mask	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def initialize_weights_mask(first_time_training, mask_dir, file_name):$/;"	function	line:4
+initialize_variables	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def initialize_variables(new_model = False, weights_path = 'DEFAULT'):$/;"	function	line:38
+conv_network	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def conv_network(images, weights, biases, keep_prob, batch_size = 128):$/;"	function	line:84
+max_pool	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def max_pool(x, filter_height, filter_width, stride_y, stride_x, name, padding='SAME'):$/;"	function	line:123
+lrn	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def lrn(x, radius, alpha, beta, name, bias=1.0):$/;"	function	line:128
+dropout	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def dropout(x, keep_prob):$/;"	function	line:132
+tf	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^import tensorflow as tf$/;"	namespace	line:1
+np	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^import numpy as np$/;"	namespace	line:2
+sys	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^import sys$/;"	namespace	line:3
+os	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^import os$/;"	namespace	line:4
+pickle	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^import pickle$/;"	namespace	line:5
+time	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^import time$/;"	namespace	line:6
+getopt	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^import getopt$/;"	namespace	line:7
+cv2	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^import cv2$/;"	namespace	line:8
+datetime	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^from datetime import datetime$/;"	namespace	line:9
+alexnet_simple	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^import alexnet_simple$/;"	namespace	line:11
+class_names	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^from caffe_classes import class_names$/;"	namespace	line:12
+ImageDataGenerator	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^from datagenerator import ImageDataGenerator$/;"	namespace	line:13
+Usage	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^class Usage(Exception):$/;"	class	line:17
+__init__	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^    def __init__ (self,msg):$/;"	member	line:18	class:Usage
+prune_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def prune_weights(cRates, weights, weights_mask, biases, biases_mask, mask_dir, f_name):$/;"	function	line:21
+prune_info	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def prune_info(weights, counting):$/;"	function	line:36
+plot_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def plot_weights(weights,pruning_info):$/;"	function	line:65
+save_pkl_model	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def save_pkl_model(weights, biases, save_dir ,f_name):$/;"	function	line:88
+calculate_non_zero_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def calculate_non_zero_weights(weight):$/;"	function	line:99
+ClipIfNotNone	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def ClipIfNotNone(grad):$/;"	function	line:104
+compute_file_name	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def compute_file_name(thresholds):$/;"	function	line:109
+main	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def main(argv = None):$/;"	function	line:123
