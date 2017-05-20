@@ -236,7 +236,7 @@ def main(argv = None):
         # model = AlexNet(x, keep_prob, num_classes, weights_mask, new_model = first_time_load)
 
 
-        score = alexnet_simple.conv_network(x, weights, biases, keep_prob, batch_size = batch_size)
+        score, test_conv = alexnet_simple.conv_network(x, weights, biases, keep_prob, batch_size = batch_size)
         print('score shape is {}'.format(score.get_shape()))
         softmax = tf.nn.softmax(score)
 
@@ -317,11 +317,12 @@ def main(argv = None):
                         (batch_x, batch_y) = train_generator.next_batch(batch_size, meta_data_dir+'train/')
                         print("size of x {}".format(np.shape(batch_x)))
                         print("size of y {}".format(np.shape(batch_y)))
-                        score_val = sess.run(score, feed_dict = {
+                        score_val,test_val = sess.run([score,test_conv], feed_dict = {
                                         x: batch_x,
                                         y: batch_y,
                                         keep_prob: 1.0})
                         print("size of score {}".format(np.shape(score_val)))
+                        print("size of test{}".format(np.shape(test_val)))
 
                         train_acc, cross_en = sess.run([accuracy, loss], feed_dict = {
                                         x: batch_x,

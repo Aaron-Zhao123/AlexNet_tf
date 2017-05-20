@@ -137,7 +137,7 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     dropout7 = dropout(fc7, keep_prob)
 
     fc8 = tf.matmul(fc7, weights['fc8']) + biases['fc8']
-    return fc8
+    return (fc8,conv1)
 
 def max_pool(x, filter_height, filter_width, stride_y, stride_x, name, padding='VALID'):
     return tf.nn.max_pool(x, ksize=[1, filter_height, filter_width, 1],
