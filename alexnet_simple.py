@@ -104,7 +104,8 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     conv2 = tf.nn.relu(tf.reshape(pre_activation,conv.get_shape().as_list()))
     pool2 = max_pool(conv2, 3, 3, 2, 2, padding = 'VALID', name = 'pool2')
     norm2 = lrn(pool2, 2, 2e-05, 0.75, name = 'norm2')
-    print(norm2.get_shape())
+    print(conv2.get_shape())
+    print(pool2.get_shape())
 
     #conv3
     conv = tf.nn.conv2d(norm2, weights['conv3'], [1, 1, 1, 1], padding='VALID')

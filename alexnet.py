@@ -31,6 +31,8 @@ class AlexNet(object):
         norm2 = lrn(pool2, 2, 2e-05, 0.75, name = 'norm2')
         print(conv1.get_shape())
         print(pool1.get_shape())
+        print(conv2.get_shape())
+        print(conv2.get_shape())
 
         # 3rd Layer: Conv (w ReLu)
         conv3 = conv(norm2, 3, 3, 384, 1, 1, name = 'conv3', mask = weights_mask['conv3'])
@@ -41,6 +43,7 @@ class AlexNet(object):
         # 5th Layer: Conv (w ReLu) -> Pool splitted into two groups
         conv5 = conv(conv4, 3, 3, 256, 1, 1, groups = 2, name = 'conv5', mask = weights_mask['conv5'])
         pool5 = max_pool(conv5, 3, 3, 2, 2, padding = 'VALID', name = 'pool5')
+        print(conv5.get_shape())
         print(pool5.get_shape())
         sys.exit()
 
