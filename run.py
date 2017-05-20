@@ -1,5 +1,6 @@
 import os
 import alexnet_training_simple
+import alexnet_training
 import sys
 import download
 
@@ -51,7 +52,8 @@ if (INITIAL_TRAIN):
         ('-lambda1', 1e-5),
         ('-lambda2', 1e-5)
         ]
-    _ = alexnet_training_simple.main(param)
+    # _ = alexnet_training_simple.main(param)
+    _ = alexnet_training.main(param)
     sys.exit()
 
 #
