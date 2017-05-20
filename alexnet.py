@@ -30,7 +30,7 @@ class AlexNet(object):
         pool2 = max_pool(conv2, 3, 3, 2, 2, padding = 'VALID', name ='pool2')
         norm2 = lrn(pool2, 2, 2e-05, 0.75, name = 'norm2')
         print(conv1.get_shape())
-        print(norm2.get_shape())
+        print(pool1.get_shape())
 
         # 3rd Layer: Conv (w ReLu)
         conv3 = conv(norm2, 3, 3, 384, 1, 1, name = 'conv3', mask = weights_mask['conv3'])
