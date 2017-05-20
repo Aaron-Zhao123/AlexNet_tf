@@ -93,7 +93,7 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     conv1 = tf.nn.relu(tf.reshape(pre_activation,conv.get_shape().as_list()))
     pool1 = max_pool(conv1, 3, 3, 2, 2, padding = 'VALID', name = 'pool1')
     norm1 = lrn(pool1, 2, 2e-05, 0.75, name = 'norm1')
-    print(tf.shape(norm1))
+    print(norm1.get_shape())
 
     #conv2
     conv = tf.nn.conv2d(norm1, weights['conv2'], [1, 1, 1, 1], padding='VALID')
@@ -102,7 +102,7 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     conv2 = tf.nn.relu(tf.reshape(pre_activation,conv.get_shape().as_list()))
     pool2 = max_pool(conv2, 3, 3, 2, 2, padding = 'VALID', name = 'pool2')
     norm2 = lrn(pool2, 2, 2e-05, 0.75, name = 'norm2')
-    print(tf.shape(norm2))
+    print(norm2.get_shape())
 
     #conv3
     conv = tf.nn.conv2d(norm2, weights['conv3'], [1, 1, 1, 1], padding='VALID')
@@ -120,7 +120,7 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     pre_activation = tf.nn.bias_add(conv, biases['conv5'])
     conv5 = tf.nn.relu(pre_activation)
     pool5 = max_pool(conv5, 3, 3, 2, 2, padding = 'VALID', name = 'pool5')
-    print(tf.shape(pool5))
+    print(pool5.get_shape())
 
     #fc6
     flattened = tf.reshape(pool5, [-1, 6*6*256])
@@ -134,7 +134,7 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     fc8 = tf.matmul(fc7, weights['fc8']) + biases['fc8']
     return fc8
 
-def max_pool(x, filter_height, filter_width, stride_y, stride_x, name, padding='SAME'):
+def max_pool(x, filter_height, filter_width, stride_y, stride_x, name, padding='VALID'):
     return tf.nn.max_pool(x, ksize=[1, filter_height, filter_width, 1],
                                                   strides = [1, stride_y, stride_x, 1],
                                                   padding = padding, name = name)
