@@ -7,7 +7,7 @@ def save_weights(weights, biases, file_name = 'base.npy'):
     for op_name in keys:
         weights_val[op_name] = [weights[op_name].eval(), biases[op_name].eval()]
     np.save(file_name, weights_val)
-    # print('saved at {}'.format(file_name))
+    print('saved at {}'.format(file_name))
 
 def initialize_weights_mask(first_time_training, mask_dir, file_name):
     NUM_CHANNELS = 3
