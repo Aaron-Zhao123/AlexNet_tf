@@ -23,4 +23,4 @@ url	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^url = 'http:\/\/www.cs.
 download_dir	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^download_dir = '.'$/;"	variable	line:36
 INITIAL_TRAIN	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^INITIAL_TRAIN = True$/;"	variable	line:38
 param	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^    param = [$/;"	variable	line:41
-_	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^    _ = alexnet_training.main(param)$/;"	variable	line:56
+_	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^    _ = alexnet_training_simple.main(param)$/;"	variable	line:55

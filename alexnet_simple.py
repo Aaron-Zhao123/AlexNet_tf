@@ -123,6 +123,7 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     pre_activation = tf.nn.bias_add(conv, biases['conv5'])
     conv5 = tf.nn.relu(pre_activation)
     pool5 = max_pool(conv5, 3, 3, 2, 2, padding = 'VALID', name = 'pool5')
+    print(conv5.get_shape())
     print(pool5.get_shape())
 
     #fc6
