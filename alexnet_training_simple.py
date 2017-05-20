@@ -311,6 +311,7 @@ def main(argv = None):
                 for i in range(0,epochs):
                     print("{} Epoch number: {}".format(datetime.now(), i+1))
                     for step in range(train_batches_per_epoch):
+                        print("batch size {}".format(batch_size))
                         (batch_x, batch_y) = train_generator.next_batch(batch_size, meta_data_dir+'train/')
 
                         train_acc, cross_en = sess.run([accuracy, loss], feed_dict = {
