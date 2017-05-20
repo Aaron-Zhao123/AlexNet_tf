@@ -20,7 +20,7 @@ def initialize_weights_mask(first_time_training, mask_dir, file_name):
             'conv1': np.ones([96]),
             'conv2': np.ones([256]),
             'conv3': np.ones([384]),
-            'conv4': np.ones([256]),
+            'conv4': np.ones([384]),
             'conv5': np.ones([256]),
             'fc6': np.ones([4096]),
             'fc7': np.ones([4096]),
@@ -64,13 +64,13 @@ def initialize_variables(new_model = False, weights_path = 'DEFAULT'):
             'fc8': tf.Variable(tf.truncated_normal([4096, NUM_CLASSES], stddev=0.01))
         }
         biases = {
-            'conv1': tf.Variable(tf.constant(0.1, shape=[64])),
-            'conv2': tf.Variable(tf.constant(0.1, shape=[64])),
-            'conv3': tf.Variable(tf.constant(0.1, shape=[64])),
-            'conv4': tf.Variable(tf.constant(0.1, shape=[64])),
-            'conv5': tf.Variable(tf.constant(0.1, shape=[64])),
-            'fc6': tf.Variable(tf.constant(0.1, shape=[384])),
-            'fc7': tf.Variable(tf.constant(0.1, shape=[192])),
+            'conv1': tf.Variable(tf.constant(0.1, shape=[96])),
+            'conv2': tf.Variable(tf.constant(0.1, shape=[256])),
+            'conv3': tf.Variable(tf.constant(0.1, shape=[384])),
+            'conv4': tf.Variable(tf.constant(0.1, shape=[384])),
+            'conv5': tf.Variable(tf.constant(0.1, shape=[256])),
+            'fc6': tf.Variable(tf.constant(0.1, shape=[4096])),
+            'fc7': tf.Variable(tf.constant(0.1, shape=[4096])),
             'fc8': tf.Variable(tf.constant(0.1, shape=[NUM_CLASSES]))
         }
     else:
