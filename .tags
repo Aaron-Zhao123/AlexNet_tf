@@ -31,20 +31,6 @@ calculate_non_zero_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_t
 ClipIfNotNone	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^def ClipIfNotNone(grad):$/;"	function	line:136
 compute_file_name	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^def compute_file_name(thresholds):$/;"	function	line:141
 main	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training.py	/^def main(argv = None):$/;"	function	line:155
-tf	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^import tensorflow as tf$/;"	namespace	line:1
-np	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^import numpy as np$/;"	namespace	line:2
-AlexNet	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^class AlexNet(object):$/;"	class	line:4
-__init__	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def __init__ (self, x, keep_prob, num_classes, weights_mask, weights_path = 'DEFAULT', new_model = False):$/;"	member	line:5	class:AlexNet
-create	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def create(self, weights_mask):$/;"	member	line:22	class:AlexNet
-load_initial_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def load_initial_weights(self, session):$/;"	member	line:55	class:AlexNet
-save_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def save_weights(self, file_name = 'base'):$/;"	member	line:94	class:AlexNet
-mask_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def mask_weights(self, weights_mask, session):$/;"	member	line:105	class:AlexNet
-conv	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, mask,$/;"	function	line:115
-fc	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def fc(x, num_in, num_out, name, mask, relu = True):$/;"	function	line:155
-max_pool	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def max_pool(x, filter_height, filter_width, stride_y, stride_x, name, padding='SAME'):$/;"	function	line:180
-lrn	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def lrn(x, radius, alpha, beta, name, bias=1.0):$/;"	function	line:185
-dropout	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def dropout(x, keep_prob):$/;"	function	line:189
-get_scope_variable	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def get_scope_variable(scope_name, var, shape = None, initializer = None):$/;"	function	line:192
 os	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import os$/;"	namespace	line:1
 alexnet_training_simple	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import alexnet_training_simple$/;"	namespace	line:2
 sys	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import sys$/;"	namespace	line:3
@@ -86,11 +72,25 @@ calculate_non_zero_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_t
 ClipIfNotNone	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def ClipIfNotNone(grad):$/;"	function	line:104
 compute_file_name	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def compute_file_name(thresholds):$/;"	function	line:109
 main	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def main(argv = None):$/;"	function	line:123
+tf	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^import tensorflow as tf$/;"	namespace	line:1
+np	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^import numpy as np$/;"	namespace	line:2
+AlexNet	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^class AlexNet(object):$/;"	class	line:4
+__init__	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def __init__ (self, x, keep_prob, num_classes, weights_mask, weights_path = 'DEFAULT', new_model = False):$/;"	member	line:5	class:AlexNet
+create	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def create(self, weights_mask):$/;"	member	line:22	class:AlexNet
+load_initial_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def load_initial_weights(self, session):$/;"	member	line:55	class:AlexNet
+save_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def save_weights(self, file_name = 'base'):$/;"	member	line:94	class:AlexNet
+mask_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^    def mask_weights(self, weights_mask, session):$/;"	member	line:105	class:AlexNet
+conv	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, mask,$/;"	function	line:115
+fc	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def fc(x, num_in, num_out, name, mask, relu = True):$/;"	function	line:155
+max_pool	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def max_pool(x, filter_height, filter_width, stride_y, stride_x, name, padding='SAME'):$/;"	function	line:180
+lrn	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def lrn(x, radius, alpha, beta, name, bias=1.0):$/;"	function	line:185
+dropout	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def dropout(x, keep_prob):$/;"	function	line:189
+get_scope_variable	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet.py	/^def get_scope_variable(scope_name, var, shape = None, initializer = None):$/;"	function	line:192
 tf	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^import tensorflow as tf$/;"	namespace	line:1
 np	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^import numpy as np$/;"	namespace	line:2
 initialize_weights_mask	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def initialize_weights_mask(first_time_training, mask_dir, file_name):$/;"	function	line:4
 initialize_variables	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def initialize_variables(new_model = False, weights_path = 'DEFAULT'):$/;"	function	line:38
 conv_network	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def conv_network(images, weights, biases, keep_prob, batch_size = 128):$/;"	function	line:86
-max_pool	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def max_pool(x, filter_height, filter_width, stride_y, stride_x, name, padding='SAME'):$/;"	function	line:131
-lrn	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def lrn(x, radius, alpha, beta, name, bias=1.0):$/;"	function	line:136
-dropout	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def dropout(x, keep_prob):$/;"	function	line:140
+max_pool	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def max_pool(x, filter_height, filter_width, stride_y, stride_x, name, padding='SAME'):$/;"	function	line:134
+lrn	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def lrn(x, radius, alpha, beta, name, bias=1.0):$/;"	function	line:139
+dropout	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def dropout(x, keep_prob):$/;"	function	line:143

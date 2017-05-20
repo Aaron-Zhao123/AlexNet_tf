@@ -119,8 +119,8 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
 
     # Create lambda function for the convolution
     convolve = lambda i, k: tf.nn.conv2d(i, k,
-                                                                       strides = [1, stride_y, stride_x, 1],
-                                                                       padding = padding)
+               strides = [1, stride_y, stride_x, 1],
+               padding = padding)
 
     weights = get_scope_variable(name, 'weights',
             shape = [filter_height, filter_width, input_channels/groups, num_filters],
