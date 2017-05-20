@@ -123,7 +123,8 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name, 
     #                                                                    padding = padding)
     #
     weights = get_scope_variable(name, 'weights',
-            shape = [filter_height, filter_width, input_channels/groups, num_filters],
+            # shape = [filter_height, filter_width, input_channels/groups, num_filters],
+            shape = [filter_height, filter_width, input_channels, num_filters],
             initializer = tf.truncated_normal_initializer())
     # weights = tf.get_variable('weights', shape = [filter_height, filter_width, input_channels/groups, num_filters], trainable = True)
     new_weights = weights * mask
