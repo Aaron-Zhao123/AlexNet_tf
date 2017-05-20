@@ -263,7 +263,8 @@ def main(argv = None):
         keep_prob = tf.placeholder(tf.float32)
 
         # initilize the model from the class constructer
-        model = AlexNet(x, keep_prob, num_classes, weights_mask, new_model = first_time_load)
+        model = AlexNet(x, keep_prob, num_classes, weights_mask, new_model = first_time_load, weights_path = 'base.npy')
+        # model = AlexNet(x, keep_prob, num_classes, weights_mask, new_model = first_time_load)
 
         score = model.fc8
         softmax = tf.nn.softmax(score)

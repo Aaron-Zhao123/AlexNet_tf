@@ -192,7 +192,7 @@ def dropout(x, keep_prob):
 def get_scope_variable(scope_name, var, shape = None, initializer = None):
     with tf.variable_scope(scope_name) as scope:
         try:
-            v = tf.get_variable(var, shape, initializer=initializer)
+            v = tf.get_variable(var, shape, initializer=initializer, trainable = True)
         except ValueError:
             scope.reuse_variables()
             v = tf.get_variable(var)
