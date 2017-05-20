@@ -104,7 +104,6 @@ class ImageDataGenerator:
 
         # Expand labels to one hot encoding
         print(labels)
-        sys.exit()
         one_hot_labels = np.zeros((batch_size, self.n_classes))
         for i in range(len(labels)):
             one_hot_labels[i][labels[i]] = 1
