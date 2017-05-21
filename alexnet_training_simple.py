@@ -226,7 +226,7 @@ def main(argv = None):
         #                                             weights_dir + 'weights' + file_name_part + '.pkl')
         #
         batch_size = 128
-        weights, biases = alexnet_simple.initialize_variables(new_model = TRAIN)
+        weights, biases = alexnet_simple.initialize_variables(new_model = TRAIN, weights_path='base.npy')
 
         x = tf.placeholder(tf.float32, [None, 227, 227, 3])
         y = tf.placeholder(tf.float32, [None, num_classes])
