@@ -312,6 +312,10 @@ def main(argv = None):
             epoch_acc = []
             epoch_entropy = []
 
+            keys = ['conv1', 'conv2', 'conv3', 'conv4', 'conv5', 'fc6', 'fc7', 'fc8']
+            for key in keys:
+                weights_init[key] = weights[key].eval()
+
             if (TRAIN):
                 print("{} Start training...".format(datetime.now()))
                 for i in range(0,epochs):
@@ -335,6 +339,12 @@ def main(argv = None):
                                         keep_prob: 1.0})
 
                         if (step % DISPLAY_FREQ == 0):
+                            print('check weights update')
+                            for key in keys:
+                                w_val = weights[key].eval()
+                                print("{}: are they equal {}".format(key, weights_init[key] == w_val))
+                                print("check some info")
+                                print("mean value is {}, max value is {}, min value is {}".format(np.mean(w_val),np.max(w_val), np.min(w_val)))
                             if (PRUNE):
                                 print('This is the {}th of {}pruning, time is {}'.format(
                                     i,
