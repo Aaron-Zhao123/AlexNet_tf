@@ -45,26 +45,6 @@ read_class_list	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^ 
 shuffle_data	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def shuffle_data(self):$/;"	member	line:50	class:ImageDataGenerator
 reset_pointer	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def reset_pointer(self):$/;"	member	line:65	class:ImageDataGenerator
 next_batch	/Users/aaron/Projects/Mphil_project/AlexNet/datagenerator.py	/^    def next_batch(self, batch_size, parent_dir):$/;"	member	line:75	class:ImageDataGenerator
-os	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import os$/;"	namespace	line:1
-alexnet_training_simple	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import alexnet_training_simple$/;"	namespace	line:2
-alexnet_training	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import alexnet_training$/;"	namespace	line:3
-sys	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import sys$/;"	namespace	line:4
-download	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import download$/;"	namespace	line:5
-compute_file_name	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^def compute_file_name(p):$/;"	function	line:7
-acc_list	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^acc_list = []$/;"	variable	line:16
-count	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^count = 0$/;"	variable	line:17
-retrain	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^retrain = 0$/;"	variable	line:18
-parent_dir	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^parent_dir = 'assets\/'$/;"	variable	line:19
-lr	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^lr = 1e-4$/;"	variable	line:21
-crates	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^crates = {$/;"	variable	line:22
-retrain_cnt	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^retrain_cnt = 0$/;"	variable	line:30
-roundrobin	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^roundrobin = 0$/;"	variable	line:31
-with_biases	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^with_biases = False$/;"	variable	line:32
-url	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^url = 'http:\/\/www.cs.toronto.edu\/~guerzhoy\/tf_alexnet\/bvlc_alexnet.npy'$/;"	variable	line:35
-download_dir	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^download_dir = '.'$/;"	variable	line:36
-INITIAL_TRAIN	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^INITIAL_TRAIN = True$/;"	variable	line:38
-param	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^    param = [$/;"	variable	line:41
-_	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^    _ = alexnet_training_simple.main(param)$/;"	variable	line:55
 tf	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^import tensorflow as tf$/;"	namespace	line:1
 np	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^import numpy as np$/;"	namespace	line:2
 save_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_simple.py	/^def save_weights(weights, biases, file_name = 'base.npy'):$/;"	function	line:3
@@ -96,3 +76,23 @@ calculate_non_zero_weights	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_t
 ClipIfNotNone	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def ClipIfNotNone(grad):$/;"	function	line:104
 compute_file_name	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def compute_file_name(thresholds):$/;"	function	line:109
 main	/Users/aaron/Projects/Mphil_project/AlexNet/alexnet_training_simple.py	/^def main(argv = None):$/;"	function	line:123
+os	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import os$/;"	namespace	line:1
+alexnet_training_simple	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import alexnet_training_simple$/;"	namespace	line:2
+alexnet_training	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import alexnet_training$/;"	namespace	line:3
+sys	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import sys$/;"	namespace	line:4
+download	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^import download$/;"	namespace	line:5
+compute_file_name	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^def compute_file_name(p):$/;"	function	line:7
+acc_list	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^acc_list = []$/;"	variable	line:16
+count	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^count = 0$/;"	variable	line:17
+retrain	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^retrain = 0$/;"	variable	line:18
+parent_dir	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^parent_dir = 'assets\/'$/;"	variable	line:19
+lr	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^lr = 1e-4$/;"	variable	line:21
+crates	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^crates = {$/;"	variable	line:22
+retrain_cnt	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^retrain_cnt = 0$/;"	variable	line:30
+roundrobin	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^roundrobin = 0$/;"	variable	line:31
+with_biases	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^with_biases = False$/;"	variable	line:32
+url	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^url = 'http:\/\/www.cs.toronto.edu\/~guerzhoy\/tf_alexnet\/bvlc_alexnet.npy'$/;"	variable	line:35
+download_dir	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^download_dir = '.'$/;"	variable	line:36
+INITIAL_TRAIN	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^INITIAL_TRAIN = True$/;"	variable	line:38
+param	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^    param = [$/;"	variable	line:41
+_	/Users/aaron/Projects/Mphil_project/AlexNet/run.py	/^    _ = alexnet_training_simple.main(param)$/;"	variable	line:55
