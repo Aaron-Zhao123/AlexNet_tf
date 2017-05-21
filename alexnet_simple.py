@@ -82,6 +82,7 @@ def initialize_variables(new_model = False, weights_path = 'DEFAULT'):
             'fc8': tf.Variable(tf.constant(0.1, shape=[NUM_CLASSES]))
         }
     else:
+        print('loading from {}'.format(WEIGHTS_PATH))
         weights_dict = np.load(WEIGHTS_PATH, encoding = 'bytes').item()
         for key in keys:
             for data in weights_dict[key]:
