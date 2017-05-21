@@ -226,7 +226,7 @@ def main(argv = None):
         #                                             weights_dir + 'weights' + file_name_part + '.pkl')
         #
         batch_size = 128
-        weights, biases = alexnet_simple.initialize_variables(new_model = True)
+        weights, biases = alexnet_simple.initialize_variables(new_model = TRAIN)
 
         x = tf.placeholder(tf.float32, [None, 227, 227, 3])
         y = tf.placeholder(tf.float32, [None, num_classes])
@@ -256,10 +256,10 @@ def main(argv = None):
             # org_grads = [(ClipIfNotNone(grad), var) for grad, var in grads]
             # train_step = opt.apply_gradients(org_grads)
             print('check var list :{}'.format(var_name_list))
-            gradients = tf.gradients(loss, var_list)
-            gradients = list(zip(gradients, var_list))
+            gradients = tf.gradients(loss)
+            clipped_grads = [(ClipIfNotNone(grad), var) for grad, var in gradients]
             opt = tf.train.AdamOptimizer(learning_rate=lr)
-            train_step = opt.apply_gradients(grads_and_vars=gradients)
+            train_step = opt.apply_gradients(clipped_grads)
 
 
         with tf.name_scope("accuracy"):
