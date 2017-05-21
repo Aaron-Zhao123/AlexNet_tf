@@ -88,7 +88,7 @@ def initialize_variables(new_model = False, weights_path = 'DEFAULT'):
                 if (len(data.shape) == 1):
                     biases[key] = tf.Variable(data)
                 else:
-                    weights[key] = tf.Vairable(data)
+                    weights[key] = tf.Variable(data)
     return (weights, biases)
 
 def conv_network(images, weights, biases, keep_prob, batch_size = 128):
