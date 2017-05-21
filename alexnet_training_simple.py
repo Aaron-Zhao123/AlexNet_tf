@@ -313,6 +313,7 @@ def main(argv = None):
             epoch_entropy = []
 
             keys = ['conv1', 'conv2', 'conv3', 'conv4', 'conv5', 'fc6', 'fc7', 'fc8']
+            weights_init= {}
             for key in keys:
                 weights_init[key] = weights[key].eval()
 
