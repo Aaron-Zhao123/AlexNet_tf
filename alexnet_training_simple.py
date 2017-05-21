@@ -396,7 +396,9 @@ def main(argv = None):
                     test_acc_list = np.array(test_acc_list)
                     test_acc = np.mean(test_acc_list)
                     print("Time {}, Validation Accuracy = {}".format(datetime.now(), test_acc))
-
+                    # reset both pointers
+                    val_generator.reset_pointer()
+                    train_generator.reset_pointer()
 
             if (TEST):
                 test_acc_list = []
