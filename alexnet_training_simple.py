@@ -256,9 +256,9 @@ def main(argv = None):
             # org_grads = [(ClipIfNotNone(grad), var) for grad, var in grads]
             # train_step = opt.apply_gradients(org_grads)
             print('check var list :{}'.format(var_name_list))
-            gradients = tf.gradients(loss)
-            clipped_grads = [(ClipIfNotNone(grad), var) for grad, var in gradients]
             opt = tf.train.AdamOptimizer(learning_rate=lr)
+            gradients = opt.compute_gradients(loss)
+            clipped_grads = [(ClipIfNotNone(grad), var) for grad, var in gradients]
             train_step = opt.apply_gradients(clipped_grads)
 
 
