@@ -340,18 +340,18 @@ def main(argv = None):
                                         keep_prob: 1.0})
 
                         if (step % DISPLAY_FREQ == 0):
-                            print('check weights update')
-                            for key in keys:
-                                w_val = weights[key].eval()
-                                print("{}: are they equal {}".format(key, weights_init[key] == w_val))
-                                print("check some info")
-                                print("mean value is {}, max value is {}, min value is {}".format(np.mean(w_val),np.max(w_val), np.min(w_val)))
-                            if (PRUNE):
-                                print('This is the {}th of {}pruning, time is {}'.format(
-                                    i,
-                                    cRates,
-                                    datetime.now()
-                                ))
+                            # print('check weights update')
+                            # for key in keys:
+                            #     w_val = weights[key].eval()
+                            #     print("{}: are they equal {}".format(key, weights_init[key] == w_val))
+                            #     print("check some info")
+                            #     print("mean value is {}, max value is {}, min value is {}".format(np.mean(w_val),np.max(w_val), np.min(w_val)))
+                            # if (PRUNE):
+                            #     print('This is the {}th of {}pruning, time is {}'.format(
+                            #         i,
+                            #         cRates,
+                            #         datetime.now()
+                            #     ))
                             # print("accuracy is {} and cross entropy is {}".format(
                             #     train_acc,
                             #     cross_en
