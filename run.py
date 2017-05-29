@@ -43,7 +43,7 @@ if (INITIAL_TRAIN):
         ('-first_time', True),
         # ('-first_time', False),
         ('-train', False),
-        ('-test', True),
+        ('-test', False),
         ('-prune', False),
         # ('-test', True),
         ('-lr', lr),

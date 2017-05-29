@@ -212,6 +212,9 @@ def main(argv = None):
             weights, biases = alexnet_simple.initialize_variables(new_model = TRAIN)
         elif(TEST):
             weights, biases = alexnet_simple.initialize_variables(new_model = TRAIN, weights_path='base.npy')
+        else:
+            weights, biases = alexnet_simple.initialize_variables(new_model = TRAIN)
+
 
         x = tf.placeholder(tf.float32, [None, 227, 227, 3])
         y = tf.placeholder(tf.float32, [None, num_classes])
