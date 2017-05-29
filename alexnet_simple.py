@@ -85,6 +85,7 @@ def initialize_variables(new_model = False, weights_path = 'DEFAULT'):
         print('loading from {}'.format(WEIGHTS_PATH))
         weights_dict = np.load(WEIGHTS_PATH, encoding = 'bytes').item()
         for key in keys:
+            print(key)
             for data in weights_dict[key]:
                 if (len(data.shape) == 1):
                     biases[key] = tf.Variable(data)
