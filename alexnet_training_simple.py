@@ -178,7 +178,7 @@ def main(argv = None):
         file_name_part = compute_file_name(cRates)
 
         # load masks
-        (weights_mask, biases_mask)= alexnet_simple.initialize_weights_mask(first_time_load, mask_dir, 'mask'+org_file_name + '.pkl')
+        (weights_mask, biases_mask)= alexnet_simple.initialize_weights_mask(first_time_load)
 
 
         if (LOCAL_TEST):
