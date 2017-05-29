@@ -128,13 +128,9 @@ def main(argv = None):
             opts = argv
             first_time_load = True
             parent_dir = './'
-            keys = ['cov1', 'cov2', 'fc1', 'fc2', 'fc3']
-            prune_thresholds = {}
             WITH_BIASES = False
             save_for_next_iter = False
             TEST = False
-            for key in keys:
-                prune_thresholds[key] = 0.
 
             for item in opts:
                 print (item)
@@ -163,40 +159,26 @@ def main(argv = None):
                 if (opt == '-lambda2'):
                     lambda_2 = val
                 if (opt == '-save'):
-                    save_for_next_iter = val
+                    SAVE = val
                 if (opt == '-org_file_name'):
                     org_file_name = val
-
-
-            print('pruning thresholds are {}'.format(prune_thresholds))
         except getopt.error, msg:
             raise Usage(msg)
-        epochs = 200
+
+        epochs = 5
         dropout = 0.5
         batch_size = 128
         num_classes = 1000
-
-        NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN = 50000
-        INITIAL_LEARNING_RATE = 0.001
-        INITIAL_LEARNING_RATE = lr
-        LEARNING_RATE_DECAY_FACTOR = 0.1
-        NUM_EPOCHS_PER_DECAY = 350.0
-        DISPLAY_FREQ = 10
-        TEST = 1
-        TRAIN_OR_TEST = 0
-        NUM_CHANNELS = 3
 
         mask_dir = parent_dir
         weights_dir = parent_dir
         LOCAL_TEST = 0
 
-
+        # compute the file name
         file_name_part = compute_file_name(cRates)
 
-        if (save_for_next_iter):
-            (weights_mask, biases_mask)= alexnet_simple.initialize_weights_mask(first_time_load, mask_dir, 'mask'+org_file_name + '.pkl')
-        else:
-            (weights_mask, biases_mask)= alexnet_simple.initialize_weights_mask(True, mask_dir, 'mask'+file_name_part + '.pkl')
+        # load masks
+        (weights_mask, biases_mask)= alexnet_simple.initialize_weights_mask(first_time_load, mask_dir, 'mask'+org_file_name + '.pkl')
 
 
         if (LOCAL_TEST):
@@ -269,19 +251,6 @@ def main(argv = None):
             check = tf.argmax(score,1)
             correct_prediction = tf.equal(tf.argmax(score,1), tf.argmax(y,1))
             accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-
-        # keys = ['cov1', 'cov2', 'fc1', 'fc2', 'fc3']
-        #     weights_new[key] = weights[key] * tf.constant(weights_mask[key], dtype=tf.float32)
-
-        #
-        # l1, l2, pred = cov_network(images, weights_new, biases, keep_prob)
-        # _, _, test_pred = cov_network(test_images, weights_new, biases, keep_prob)
-        # cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits = pred, labels = y)
-        #
-
-        # new_grads = mask_gradients(weights, org_grads, weights_mask, biases, biases_mask, WITH_BIASES)
-
-        # Apply gradients.
 
 
         init = tf.global_variables_initializer()

@@ -63,10 +63,10 @@ def initialize_variables(new_model = False, weights_path = 'DEFAULT'):
     if (new_model):
         weights = {
             'conv1': tf.Variable(tf.truncated_normal([11, 11, NUM_CHANNELS, 96], stddev=5e-2)),
-            'conv2': tf.Variable(tf.truncated_normal([5, 5, 96, 256], stddev=5e-2)),
+            'conv2': tf.Variable(tf.truncated_normal([5, 5, 48, 256], stddev=5e-2)),
             'conv3': tf.Variable(tf.truncated_normal([3, 3, 256, 384], stddev=5e-2)),
-            'conv4': tf.Variable(tf.truncated_normal([3, 3, 384, 384], stddev=5e-2)),
-            'conv5': tf.Variable(tf.truncated_normal([3, 3, 384, 256], stddev=5e-2)),
+            'conv4': tf.Variable(tf.truncated_normal([3, 3, 192, 384], stddev=5e-2)),
+            'conv5': tf.Variable(tf.truncated_normal([3, 3, 192, 256], stddev=5e-2)),
             'fc6': tf.Variable(tf.truncated_normal([6 * 6 * 256, 4096], stddev=0.01)),
             'fc7': tf.Variable(tf.truncated_normal([4096, 4096], stddev=0.01)),
             'fc8': tf.Variable(tf.truncated_normal([4096, NUM_CLASSES], stddev=0.01))
@@ -103,8 +103,6 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     pool1 = max_pool(conv1, 3, 3, 2, 2, padding = 'VALID', name = 'pool1')
     norm1 = lrn(pool1, 2, 2e-05, 0.75, name = 'norm1')
 
-    print(conv1.get_shape())
-    print(pool1.get_shape())
 
     #conv2
     conv = tf.nn.conv2d(norm1, weights['conv2'], [1, 1, 1, 1], padding='SAME')
