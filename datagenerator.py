@@ -15,8 +15,9 @@ wrote my own little generator.
 
 class ImageDataGenerator:
     def __init__(self, class_list, horizontal_flip=False, shuffle=False,
-                 scale_size=(227, 227),
-                 nb_classes = 1000):
+            mean=np.array([104.,117.,124.]),
+            scale_size=(227, 227),
+            nb_classes = 1000):
 
         # Init params
         self.horizontal_flip = horizontal_flip
@@ -26,6 +27,7 @@ class ImageDataGenerator:
         self.pointer = 0
 
         self.read_class_list(class_list)
+        self.img_mean = mean
 
         if self.shuffle:
             self.shuffle_data()
@@ -95,11 +97,9 @@ class ImageDataGenerator:
             #rescale image
             img = cv2.resize(img, (self.scale_size[0], self.scale_size[0]))
             img = img.astype(np.float32)
-            img_mean = np.mean(img)
 
             #subtract mean
-            # img -= img_mean
-
+            img -= self.img_mean
             images[i] = img
 
         # Expand labels to one hot encoding
