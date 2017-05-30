@@ -211,7 +211,10 @@ def main(argv = None):
         if (TRAIN):
             weights, biases = alexnet_simple.initialize_variables(new_model = TRAIN)
         elif(TEST):
-            weights, biases = alexnet_simple.initialize_variables(new_model = TRAIN, weights_path='base.npy')
+            if LOCAL_TEST:
+                weights, biases = alexnet_simple.initialize_variables(new_model = TRAIN)
+            else:
+                weights, biases = alexnet_simple.initialize_variables(new_model = TRAIN, weights_path='base.npy')
         else:
             weights, biases = alexnet_simple.initialize_variables(new_model = TRAIN)
 
