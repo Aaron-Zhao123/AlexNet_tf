@@ -278,7 +278,7 @@ def main(argv = None):
         if (TRAIN):
             train_generator = ImageDataGenerator(train_file_txt,
                                                  horizontal_flip = False, shuffle = True)
-            val_generator = ImageDataGenerator(val_file_txt)
+            val_generator = ImageDataGenerator(val_file_txt, scale_size = (256,256))
 
             # Get the number of training/validation steps per epoch
             train_batches_per_epoch = train_generator.data_size / batch_size
