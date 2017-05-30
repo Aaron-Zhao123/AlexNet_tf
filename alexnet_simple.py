@@ -98,7 +98,7 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     NUM_CLASSES = 1000
     NUM_CHANNELS = 3
     # conv1
-    conv1 = conv(self.X, 11, 11, 96, 4, 4, padding = 'VALID')
+    conv1 = conv(images, weights['conv1'], 11, 11, 96, 4, 4, padding = 'VALID')
     pre_activation = tf.nn.bias_add(conv1, biases['conv1'])
     conv1_act = tf.nn.relu(pre_activation)
     # conv1 = tf.nn.relu(tf.reshape(pre_activation,conv.get_shape().as_list()))
@@ -107,7 +107,7 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
 
 
     #conv2
-    conv2 = conv(norm1, 5, 5, 256, 1, 1, groups = 2)
+    conv2 = conv(norm1, weights['conv2'], 5, 5, 256, 1, 1, groups = 2)
     # conv = tf.nn.conv2d(norm1, weights['conv2'], [1, 1, 1, 1], padding='SAME')
     pre_activation = tf.nn.bias_add(conv2, biases['conv2'])
     conv2_act = tf.nn.relu(pre_activation)
@@ -116,20 +116,20 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     norm2 = lrn(pool2, 2, 2e-05, 0.75, name = 'norm2')
 
     #conv3
-    conv3 = conv(norm2, 3, 3, 384, 1, 1, name = 'conv3')
+    conv3 = conv(norm2, weights['conv3'], 3, 3, 384, 1, 1, name = 'conv3')
     # conv = tf.nn.conv2d(norm2, weights['conv3'], [1, 1, 1, 1], padding='SAME')
     pre_activation = tf.nn.bias_add(conv3, biases['conv3'])
     conv3_act = tf.nn.relu(pre_activation)
     # conv3 = tf.nn.relu(tf.reshape(pre_activation,conv.get_shape().as_list()))
 
     #conv4
-    conv4 = conv(conv3_act, 3, 3, 384, 1, 1, groups = 2)
+    conv4 = conv(conv3_act, weights['conv4'], 3, 3, 384, 1, 1, groups = 2)
     pre_activation = tf.nn.bias_add(conv4, biases['conv4'])
     conv4_act = tf.nn.relu(pre_activation)
     # conv4 = tf.nn.relu(tf.reshape(pre_activation,conv.get_shape().as_list()))
 
     #conv5
-    conv5 = conv(conv4_act, 3, 3, 256, 1, 1, groups = 2)
+    conv5 = conv(conv4_act, weights['conv5'], 3, 3, 256, 1, 1, groups = 2)
     # conv = tf.nn.conv2d(conv4, weights['conv5'], [1, 1, 1, 1], padding='SAME')
     pre_activation = tf.nn.bias_add(conv5, biases['conv5'])
     conv5 = tf.nn.relu(pre_activation)
