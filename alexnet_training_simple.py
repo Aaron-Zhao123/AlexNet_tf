@@ -261,9 +261,11 @@ def main(argv = None):
             accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
             top_5_indices = tf.cast(tf.nn.top_k(score, k=5).indices, tf.float32)
-            correct_prediction_top5 = tf.equal(top_5_indices, y)
-            raw_acc = tf.cast(tf.reduce_sum(correct_prediction_top5, axis = 1), tf.float32)
-            top_5_accuracy = tf.reduce_mean(raw_acc)
+            # correct_prediction_top5 = tf.equal(top_5_indices, y)
+            # raw_acc = tf.cast(tf.reduce_sum(correct_prediction_top5, axis = 1), tf.float32)
+            # top_5_accuracy = tf.reduce_mean(raw_acc)
+            y_args = tf.cast(tf.argmax(y,1), tf.int32)
+            top_5_accuracy = tf.reduce_mean(tf.nn.in_top_k(score, y_args, 5))
 
 
         init = tf.global_variables_initializer()
