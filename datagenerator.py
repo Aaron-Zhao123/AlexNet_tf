@@ -99,7 +99,7 @@ class ImageDataGenerator:
             img = img.astype(np.float32)
 
             #subtract mean
-            img -= self.img_mean
+            # img -= self.img_mean
             images[i] = img
 
         # Expand labels to one hot encoding
