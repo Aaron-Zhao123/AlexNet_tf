@@ -276,10 +276,13 @@ def main(argv = None):
             val_batches_per_epoch = val_generator.data_size / batch_size
 
         if (TEST):
-            test_generator = ImageDataGenerator(test_file_txt)
-            test_batches_per_epoch = test_generator.data_size / batch_size
-            print('data size is {}'.format(test_generator.data_size))
-            print('Number of test batches per epoch is {}'.format(test_batches_per_epoch))
+            if LOCAL_TEST:
+                pass
+            else:
+                test_generator = ImageDataGenerator(test_file_txt)
+                test_batches_per_epoch = test_generator.data_size / batch_size
+                print('data size is {}'.format(test_generator.data_size))
+                print('Number of test batches per epoch is {}'.format(test_batches_per_epoch))
 
 
         with tf.Session() as sess:
