@@ -261,7 +261,7 @@ def main(argv = None):
             accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
             top_5_indices = tf.nn.top_k(score, k=5).indices
-            correct_prediction_top5 = tf.equal(top_5_indices, target)
+            correct_prediction_top5 = tf.equal(top_5_indices, y)
             raw_acc = tf.cast(tf.reduce_sum(correct_prediction_top5, axis = 1), tf.float32)
             top_5_accuracy = tf.reduce_mean(raw_acc)
 
