@@ -98,7 +98,7 @@ class ImageDataGenerator:
             img_mean = np.mean(img)
 
             #subtract mean
-            img -= img_mean
+            # img -= img_mean
 
             images[i] = img
 
