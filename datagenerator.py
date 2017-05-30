@@ -15,14 +15,13 @@ wrote my own little generator.
 
 class ImageDataGenerator:
     def __init__(self, class_list, horizontal_flip=False, shuffle=False,
-                 mean = np.array([104., 117., 124.]), scale_size=(227, 227),
+                 scale_size=(227, 227),
                  nb_classes = 1000):
 
         # Init params
         self.horizontal_flip = horizontal_flip
         self.n_classes = nb_classes
         self.shuffle = shuffle
-        self.mean = mean
         self.scale_size = scale_size
         self.pointer = 0
 
@@ -96,9 +95,10 @@ class ImageDataGenerator:
             #rescale image
             img = cv2.resize(img, (self.scale_size[0], self.scale_size[0]))
             img = img.astype(np.float32)
+            img_mean = np.mean(img)
 
             #subtract mean
-            img -= self.mean
+            img -= img_mean
 
             images[i] = img
 

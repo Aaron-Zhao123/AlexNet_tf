@@ -208,7 +208,6 @@ def main(argv = None):
         #     weights, biases = initialize_variables( PREV_MODEL_EXIST,
         #                                             weights_dir + 'weights' + file_name_part + '.pkl')
         #
-        batch_size = 128
         if (TRAIN):
             weights, biases = alexnet_simple.initialize_variables(new_model = TRAIN)
         elif(TEST):
