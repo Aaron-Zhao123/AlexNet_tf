@@ -92,50 +92,48 @@ def initialize_variables(new_model = False, weights_path = 'DEFAULT'):
                 else:
                     weights[key] = tf.Variable(data)
                     print(data.shape)
-        sys.exit()
     return (weights, biases)
 
 def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     NUM_CLASSES = 1000
     NUM_CHANNELS = 3
     # conv1
-    conv = tf.nn.conv2d(images, weights['conv1'], [1, 4, 4, 1], padding='VALID')
-    pre_activation = tf.nn.bias_add(conv, biases['conv1'])
-    conv1 = tf.nn.relu(pre_activation)
+    conv1 = conv(self.X, 11, 11, 96, 4, 4, padding = 'VALID')
+    pre_activation = tf.nn.bias_add(conv1, biases['conv1'])
+    conv1_act = tf.nn.relu(pre_activation)
     # conv1 = tf.nn.relu(tf.reshape(pre_activation,conv.get_shape().as_list()))
-    pool1 = max_pool(conv1, 3, 3, 2, 2, padding = 'VALID', name = 'pool1')
+    pool1 = max_pool(conv1_act, 3, 3, 2, 2, padding = 'VALID', name = 'pool1')
     norm1 = lrn(pool1, 2, 2e-05, 0.75, name = 'norm1')
 
 
     #conv2
-    conv = tf.nn.conv2d(norm1, weights['conv2'], [1, 1, 1, 1], padding='SAME')
-    pre_activation = tf.nn.bias_add(conv, biases['conv2'])
-    conv2 = tf.nn.relu(pre_activation)
+    conv2 = conv(norm1, 5, 5, 256, 1, 1, groups = 2)
+    # conv = tf.nn.conv2d(norm1, weights['conv2'], [1, 1, 1, 1], padding='SAME')
+    pre_activation = tf.nn.bias_add(conv2, biases['conv2'])
+    conv2_act = tf.nn.relu(pre_activation)
     # conv2 = tf.nn.relu(tf.reshape(pre_activation,conv.get_shape().as_list()))
-    pool2 = max_pool(conv2, 3, 3, 2, 2, padding = 'VALID', name = 'pool2')
+    pool2 = max_pool(conv2_act, 3, 3, 2, 2, padding = 'VALID', name = 'pool2')
     norm2 = lrn(pool2, 2, 2e-05, 0.75, name = 'norm2')
-    print(conv2.get_shape())
-    print(pool2.get_shape())
 
     #conv3
-    conv = tf.nn.conv2d(norm2, weights['conv3'], [1, 1, 1, 1], padding='SAME')
-    pre_activation = tf.nn.bias_add(conv, biases['conv3'])
-    conv3 = tf.nn.relu(pre_activation)
+    conv3 = conv(norm2, 3, 3, 384, 1, 1, name = 'conv3')
+    # conv = tf.nn.conv2d(norm2, weights['conv3'], [1, 1, 1, 1], padding='SAME')
+    pre_activation = tf.nn.bias_add(conv3, biases['conv3'])
+    conv3_act = tf.nn.relu(pre_activation)
     # conv3 = tf.nn.relu(tf.reshape(pre_activation,conv.get_shape().as_list()))
 
     #conv4
-    conv = tf.nn.conv2d(conv3, weights['conv4'], [1, 1, 1, 1], padding='SAME')
-    pre_activation = tf.nn.bias_add(conv, biases['conv4'])
-    conv4 = tf.nn.relu(pre_activation)
+    conv4 = conv(conv3_act, 3, 3, 384, 1, 1, groups = 2)
+    pre_activation = tf.nn.bias_add(conv4, biases['conv4'])
+    conv4_act = tf.nn.relu(pre_activation)
     # conv4 = tf.nn.relu(tf.reshape(pre_activation,conv.get_shape().as_list()))
 
     #conv5
-    conv = tf.nn.conv2d(conv4, weights['conv5'], [1, 1, 1, 1], padding='SAME')
-    pre_activation = tf.nn.bias_add(conv, biases['conv5'])
+    conv5 = conv(conv4_act, 3, 3, 256, 1, 1, groups = 2)
+    # conv = tf.nn.conv2d(conv4, weights['conv5'], [1, 1, 1, 1], padding='SAME')
+    pre_activation = tf.nn.bias_add(conv5, biases['conv5'])
     conv5 = tf.nn.relu(pre_activation)
     pool5 = max_pool(conv5, 3, 3, 2, 2, padding = 'VALID', name = 'pool5')
-    print(conv5.get_shape())
-    print(pool5.get_shape())
 
     #fc6
     flattened = tf.reshape(pool5, [-1, 6*6*256])
@@ -143,11 +141,35 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     dropout6 = dropout(fc6, keep_prob)
 
     # fc7
-    fc7 = tf.nn.relu(tf.matmul(fc6, weights['fc7']) + biases['fc7'])
+    fc7 = tf.nn.relu(tf.matmul(dropout6, weights['fc7']) + biases['fc7'])
     dropout7 = dropout(fc7, keep_prob)
 
-    fc8 = tf.matmul(fc7, weights['fc8']) + biases['fc8']
-    return (fc8,flattened)
+    fc8 = tf.matmul(dropout7, weights['fc8']) + biases['fc8']
+    return fc8
+
+def conv(x, weights, filter_height, filter_width, num_filters, stride_y, stride_x,
+         padding='SAME', groups=1):
+
+ # Get number of input channels
+    input_channels = int(x.get_shape()[-1])
+
+  # Create lambda function for the convolution
+    convolve = lambda i, k: tf.nn.conv2d(i, k,
+                                       strides = [1, stride_y, stride_x, 1],
+                                       padding = padding)
+
+    if groups == 1:
+        conv = convolve(x, weights)
+    # In the cases of multiple groups, split inputs & weights and
+    else:
+        # Split input and weights and convolve them separately
+        input_groups = tf.split(axis = 3, num_or_size_splits=groups, value=x)
+        weight_groups = tf.split(axis = 3, num_or_size_splits=groups, value=weights)
+        output_groups = [convolve(i, k) for i,k in zip(input_groups, weight_groups)]
+        # Concat the convolved output together again
+        conv = tf.concat(axis = 3, values = output_groups)
+    return conv
+
 
 def max_pool(x, filter_height, filter_width, stride_y, stride_x, name, padding='VALID'):
     return tf.nn.max_pool(x, ksize=[1, filter_height, filter_width, 1],

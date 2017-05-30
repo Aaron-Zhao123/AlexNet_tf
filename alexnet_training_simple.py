@@ -172,7 +172,7 @@ def main(argv = None):
 
         mask_dir = parent_dir
         weights_dir = parent_dir
-        LOCAL_TEST = 0
+        LOCAL_TEST = 1
 
         # compute the file name
         file_name_part = compute_file_name(cRates)
@@ -224,7 +224,7 @@ def main(argv = None):
         # model = AlexNet(x, keep_prob, num_classes, weights_mask, new_model = first_time_load)
 
 
-        score, test_conv = alexnet_simple.conv_network(x, weights, biases, keep_prob, batch_size = batch_size)
+        score = alexnet_simple.conv_network(x, weights, biases, keep_prob, batch_size = batch_size)
         print('score shape is {}'.format(score.get_shape()))
         softmax = tf.nn.softmax(score)
 
