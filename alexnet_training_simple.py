@@ -173,6 +173,7 @@ def main(argv = None):
         mask_dir = parent_dir
         weights_dir = parent_dir
         LOCAL_TEST = 0
+        DISPLAY_FREQ = 500
 
         # compute the file name
         file_name_part = compute_file_name(cRates)
