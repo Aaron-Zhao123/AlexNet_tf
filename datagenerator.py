@@ -97,6 +97,8 @@ class ImageDataGenerator:
             #rescale image
             img = cv2.resize(img, (self.scale_size[0], self.scale_size[0]))
             img = img.astype(np.float32)
+            print(img)
+            sys.exit()
 
             #subtract mean
             # img -= self.img_mean
