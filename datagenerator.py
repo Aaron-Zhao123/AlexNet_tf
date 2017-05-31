@@ -103,8 +103,8 @@ class ImageDataGenerator:
             # sys.exit()
 
             #subtract mean
-            # img -= np.mean(img)
-            # img[:, :, 0], img[:, :, 2] = img[:, :, 2], img[:, :, 0]
+            img -= np.mean(img)
+            img[:, :, 0], img[:, :, 2] = img[:, :, 2], img[:, :, 0]
             images[i] = img
 
         # Expand labels to one hot encoding
