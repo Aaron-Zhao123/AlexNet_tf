@@ -42,7 +42,7 @@ if (INITIAL_TRAIN):
         ('-cRates', crates),
         ('-first_time', True),
         # ('-first_time', False),
-        ('-train', Flase),
+        ('-train', False),
         ('-test', True),
         ('-prune', False),
         # ('-test', True),
