@@ -372,17 +372,22 @@ def main(argv = None):
                                         y: batch_y,
                                         keep_prob: dropout})
                     test_acc_list = []
+                    top5_acc_list = []
                     for _ in range(val_batches_per_epoch):
                         # Taverse one epoch
                         (batch_tx, batch_ty) = val_generator.next_batch(batch_size, meta_data_dir + 'val/')
-                        tmp_acc, c_pred, c_softmax = sess.run([accuracy, score, softmax], feed_dict = {
+                        top_5_tmp_acc, tmp_acc, c_pred, c_softmax = sess.run([top_5_accuracy,accuracy, score, softmax], feed_dict = {
                             x: batch_tx,
                             y: batch_ty,
                             keep_prob: 1.0})
                         test_acc_list.append(tmp_acc)
+                        top5_acc_list.append(top_5_tmp_acc)
                     test_acc_list = np.array(test_acc_list)
+                    top5_acc_list = np.array(top5_acc_list)
                     test_acc = np.mean(test_acc_list)
+                    top_5_acc = np.mean(top5_acc_list)
                     print("Time {}, Validation Accuracy = {}".format(datetime.now(), test_acc))
+                    print("top 5 accuracy  = {}".format(top_5_acc))
                     # reset both pointers
                     val_generator.reset_pointer()
                     train_generator.reset_pointer()
