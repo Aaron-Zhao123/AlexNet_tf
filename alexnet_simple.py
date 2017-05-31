@@ -99,8 +99,8 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     NUM_CHANNELS = 3
     # preprocess
     mean = tf.constant([104.,117.,124.], dtype=tf.float32, shape=[1, 1, 1, 3])
-    # p_images = images - mean
-    p_images = images
+    p_images = images - mean
+    # p_images = images
     # conv1
     conv1 = conv(p_images, weights['conv1'], 11, 11, 96, 4, 4, padding = 'VALID')
     pre_activation = tf.nn.bias_add(conv1, biases['conv1'])
