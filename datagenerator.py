@@ -98,12 +98,12 @@ class ImageDataGenerator:
             img = cv2.resize(img, (self.scale_size[0], self.scale_size[0]))
             img = img.astype(np.float32)
             h, w, c = img.shape
-            # assert c==3
+            assert c==3
             # print(img)
-            sys.exit()
+            # sys.exit()
 
             #subtract mean
-            # img -= self.img_mean
+            img -= mean(img)
             # img[:, :, 0], img[:, :, 2] = img[:, :, 2], img[:, :, 0]
             images[i] = img
 
