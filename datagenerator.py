@@ -100,7 +100,7 @@ class ImageDataGenerator:
 
             #subtract mean
             # img -= self.img_mean
-            img[:, :, 0], img[:, :, 2] = img[:, :, 2], img[:, :, 0]
+            # img[:, :, 0], img[:, :, 2] = img[:, :, 2], img[:, :, 0]
             images[i] = img
 
         # Expand labels to one hot encoding
