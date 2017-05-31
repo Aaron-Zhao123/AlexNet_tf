@@ -97,6 +97,8 @@ class ImageDataGenerator:
             #rescale image
             img = cv2.resize(img, (self.scale_size[0], self.scale_size[0]))
             img = img.astype(np.float32)
+            h, w, c = img.shape
+            assert c==3
             print(img)
             sys.exit()
 
