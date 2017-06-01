@@ -99,7 +99,7 @@ def conv_network(images, weights, biases, keep_prob, batch_size = 128):
     NUM_CHANNELS = 3
     # preprocess
     # mean = tf.constant([104.0069879317889,116.66876761696767,122.678914340678], dtype=tf.float32, shape=[1, 1, 1, 3])
-    mean_RGB = {'B': 104.0069879317889: 'G', 116.66876761696767, 'R': 122.6789143406786}
+    mean_RGB = {'B': 104.0069879317889, 'G', 116.66876761696767, 'R': 122.6789143406786}
     mean = tf.constant([mean_RGB['R'],mean_RGB['G'],mean_RGB['B']], dtype=tf.float32, shape=[1, 1, 1, 3])
     # mean-subtracted values: [('B', 104.0069879317889), ('G', 116.66876761696767), ('R', 122.6789143406786)]
     # images = images * 255.0
