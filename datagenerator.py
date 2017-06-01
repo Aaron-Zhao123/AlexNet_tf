@@ -95,13 +95,19 @@ class ImageDataGenerator:
                 img = cv2.flip(img, 1)
 
             #rescale image
-            img = cv2.resize(img, (self.scale_size[0], self.scale_size[0]))
             img = img.astype(np.float32)
             h, w, c = img.shape
             assert c==3
             print(img)
-            sys.exit()
-
+            # sys.exit()
+            img = img / 255.0
+            assert (0 <= img).all() and (img <= 1.0).all()
+            short_edge = min(img.shape[:2])
+            yy = int((img.shape[0] - short_edge) / 2)
+            xx = int((img.shape[1] - short_edge) / 2)
+            crop_img = img[yy: yy + short_edge, xx: xx + short_edge]
+            
+            img = cv2.resize(img, (self.scale_size[0], self.scale_size[0]))
             #subtract mean
             # img -= np.mean(img)
             # img[:, :, 0], img[:, :, 2] = img[:, :, 2], img[:, :, 0]
