@@ -99,8 +99,8 @@ class ImageDataGenerator:
             img = img.astype(np.float32)
             h, w, c = img.shape
             assert c==3
-            # print(img)
-            # sys.exit()
+            print(img)
+            sys.exit()
 
             #subtract mean
             # img -= np.mean(img)
