@@ -89,6 +89,7 @@ class ImageDataGenerator:
         images = np.ndarray([batch_size, self.scale_size[0], self.scale_size[1], 3])
         for i in range(len(paths)):
             img = cv2.imread(parent_dir + paths[i])
+            img = cv2.resize(img, (self.scale_size[0], self.scale_size[0]))
 
             #flip image at random if flag is selected
             if self.horizontal_flip and np.random.random() < 0.5:
@@ -100,14 +101,13 @@ class ImageDataGenerator:
             assert c==3
             # print(img)
             # sys.exit()
-            img = img / 255.0
-            assert (0 <= img).all() and (img <= 1.0).all()
-            short_edge = min(img.shape[:2])
-            yy = int((img.shape[0] - short_edge) / 2)
-            xx = int((img.shape[1] - short_edge) / 2)
-            crop_img = img[yy: yy + short_edge, xx: xx + short_edge]
+            # img = img / 255.0
+            # assert (0 <= img).all() and (img <= 1.0).all()
+            # short_edge = min(img.shape[:2])
+            # yy = int((img.shape[0] - short_edge) / 2)
+            # xx = int((img.shape[1] - short_edge) / 2)
+            # crop_img = img[yy: yy + short_edge, xx: xx + short_edge]
 
-            img = cv2.resize(img, (self.scale_size[0], self.scale_size[0]))
             #subtract mean
             # img -= np.mean(img)
             # img[:, :, 0], img[:, :, 2] = img[:, :, 2], img[:, :, 0]
