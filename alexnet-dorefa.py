@@ -100,7 +100,7 @@ class Model(ModelDesc):
             return tf.clip_by_value(x, 0.0, 1.0)
 
         def activate(x):
-            return fa(nonlin(x))
+            return nonlin(x)
 
         with argscope(BatchNorm, decay=0.9, epsilon=1e-4), \
                 argscope([Conv2D, FullyConnected], use_bias=False, nl=tf.identity):
@@ -108,35 +108,29 @@ class Model(ModelDesc):
                       .Conv2D('conv0', 96, 12, stride=4, padding='VALID')
                       .apply(activate)
                       .Conv2D('conv1', 256, 5, padding='SAME', split=2)
-                      .apply(fg)
                       .BatchNorm('bn1')
                       .MaxPooling('pool1', 3, 2, padding='SAME')
                       .apply(activate)
 
                       .Conv2D('conv2', 384, 3)
-                      .apply(fg)
                       .BatchNorm('bn2')
                       .MaxPooling('pool2', 3, 2, padding='SAME')
                       .apply(activate)
 
                       .Conv2D('conv3', 384, 3, split=2)
-                      .apply(fg)
                       .BatchNorm('bn3')
                       .apply(activate)
 
                       .Conv2D('conv4', 256, 3, split=2)
-                      .apply(fg)
                       .BatchNorm('bn4')
                       .MaxPooling('pool4', 3, 2, padding='VALID')
                       .apply(activate)
 
                       .FullyConnected('fc0', 4096)
-                      .apply(fg)
                       .BatchNorm('bnfc0')
                       .apply(activate)
 
                       .FullyConnected('fc1', 4096)
-                      .apply(fg)
                       .BatchNorm('bnfc1')
                       .apply(nonlin)
                       .FullyConnected('fct', 1000, use_bias=True)())
