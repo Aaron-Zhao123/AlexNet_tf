@@ -296,7 +296,7 @@ if __name__ == '__main__':
     parser.add_argument('--run', help='run on a list of images with the pretrained model', nargs='*')
     args = parser.parse_args()
 
-    BITW, BITA, BITG = map(int, args.dorefa.split(','))
+    # BITW, BITA, BITG = map(int, args.dorefa.split(','))
 
     if args.gpu:
         os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
