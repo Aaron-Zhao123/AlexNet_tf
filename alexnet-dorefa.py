@@ -16,7 +16,6 @@ from tensorpack import *
 from tensorpack.tfutils.symbolic_functions import *
 from tensorpack.tfutils.summary import *
 from tensorpack.tfutils.varreplace import remap_variables
-from dorefa import get_dorefa
 
 """
 This is a tensorpack script for the ImageNet results in paper:
