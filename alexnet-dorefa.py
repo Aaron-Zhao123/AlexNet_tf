@@ -283,8 +283,8 @@ if __name__ == '__main__':
     parser.add_argument('--gpu', help='the physical ids of GPUs to use')
     parser.add_argument('--load', help='load a checkpoint, or a npy (given as the pretrained model)')
     parser.add_argument('--data', help='ILSVRC dataset dir')
-    parser.add_argument('--dorefa',
-                        help='number of bits for W,A,G, separated by comma', required=False)
+    # parser.add_argument('--dorefa',
+    #                     help='number of bits for W,A,G, separated by comma', required=False)
     parser.add_argument('--run', help='run on a list of images with the pretrained model', nargs='*')
     args = parser.parse_args()
 
