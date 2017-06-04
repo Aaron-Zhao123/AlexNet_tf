@@ -1,4 +1,5 @@
 from tensorpack import *
+import numpy as np
 class RawILSVRC12(DataFlow):
     def __init__(self):
         meta = dataset.ILSVRCMeta()
