@@ -5,6 +5,7 @@ http://tensorpack.readthedocs.io/en/latest/tutorial/efficient-dataflow.html
 from tensorpack import *
 import lmdb
 import numpy as np
+import os
 PATH = '/local/scratch/share/ImageNet/ILSVRC/Data/CLS-LOC'
 CONVERT_LMDB = 1
 EFFICIENT_FLOW = 0
