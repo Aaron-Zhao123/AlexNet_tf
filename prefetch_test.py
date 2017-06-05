@@ -12,7 +12,7 @@ if CONVERT_LMDB:
     dftools.dump_dataflow_to_lmdb(ds3, './ILSVRC-val.lmdb')
 
 # check the training data
-db_dir = '/local/scratch/share/ImageNet/tensorflow/'
+db_dir = './'
 ds = LMDBData(db_dir + 'ILSVRC-train.lmdb', shuffle=False)
 ds = BatchData(ds, 256, use_list=True)
 TestDataSpeed(ds).start_test()
