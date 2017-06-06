@@ -68,8 +68,9 @@ if EFFICIENT_FLOW:
     ds = PrefetchDataZMQ(ds, 25)
     ds = BatchData(ds, 256)
 else:
-    db_dir = './'
-    ds = LMDBData(db_dir + 'ILSVRC-train.lmdb', shuffle=False)
+    db_dir = '/local/scratch/yaz21/ImageNetData/CLS-LOC'
+    ds = dataset.ILSVRC12(db_dir, 'train', shuffle=True)
+    # ds = LMDBData(db_dir + 'ILSVRC-train.lmdb', shuffle=False)
     ds = BatchData(ds, 256, use_list=True)
 
 TestDataSpeed(ds).start_test()
