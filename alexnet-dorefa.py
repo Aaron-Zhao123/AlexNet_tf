@@ -159,9 +159,15 @@ def get_data(dataset_name):
     isTrain = dataset_name == 'train'
     # ds = dataset.ILSVRC12(args.data, dataset_name, shuffle=isTrain)
     if isTrain:
-        ds = dataset.LMDBData(args.data + 'ILSVRC-train.lmdb', shuffle=True)
+        ds = LMDBData(args.data + 'ILSVRC-train.lmdb', shuffle=True)
     else:
-        ds = dataset.LMDBData(args.data + 'ILSVRC-val.lmdb', shuffle=True)
+        ds = LMDBData(args.data + 'ILSVRC-val.lmdb', shuffle=True)
+
+    ds = LocallyShuffleData(ds, 50000)
+    if isTrain:
+        ds = PrefetchData(ds, 5000, 1)
+    ds = LMDBDataPoint(ds)
+    ds = MapDataComponent(ds, lambda x: cv2.imdecode(x, cv2.IMREAD_COLOR), 0)
 
     meta = dataset.ILSVRCMeta()
     pp_mean = meta.get_per_pixel_mean()
