@@ -217,10 +217,10 @@ def get_data(dataset_name):
             imgaug.CenterCrop((224, 224)),
             imgaug.MapImage(lambda x: x - pp_mean_224),
         ]
-    # ds = AugmentImageComponent(ds, augmentors, copy=False)
+    ds = AugmentImageComponent(ds, augmentors, copy=False)
     ds = BatchData(ds, BATCH_SIZE, remainder=not isTrain)
-    # if isTrain:
-    #     ds = PrefetchDataZMQ(ds, min(12, multiprocessing.cpu_count()))
+    if isTrain:
+        ds = PrefetchDataZMQ(ds, min(12, multiprocessing.cpu_count()))
     return ds
 
 
