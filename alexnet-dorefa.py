@@ -159,7 +159,7 @@ def get_data(dataset_name):
     isTrain = dataset_name == 'train'
     # ds = dataset.ILSVRC12(args.data, dataset_name, shuffle=isTrain)
     if isTrain:
-        ds = LMDBData(db_dir + 'ILSVRC-train.lmdb', shuffle=True)
+        ds = LMDBData(args.data + 'ILSVRC-train.lmdb', shuffle=True)
 
     meta = dataset.ILSVRCMeta()
     pp_mean = meta.get_per_pixel_mean()
