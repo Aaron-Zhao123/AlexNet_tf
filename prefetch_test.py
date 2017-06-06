@@ -9,7 +9,7 @@ import os
 import sys
 PATH = '/local/scratch/share/ImageNet/ILSVRC/Data/CLS-LOC'
 CONVERT_LMDB_TRAIN = 0
-CONVERT_LMDB_VAL = 1
+CONVERT_LMDB_VAL = 0
 EFFICIENT_FLOW = 1
 
 if CONVERT_LMDB_TRAIN:
