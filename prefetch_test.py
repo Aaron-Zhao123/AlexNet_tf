@@ -64,7 +64,7 @@ if EFFICIENT_FLOW:
     ds = PrefetchData(ds, 5000, 1)
     # ds = LMDBDataPoint(ds)
     ds = MapDataComponent(ds, lambda x: cv2.imdecode(x, cv2.IMREAD_COLOR), 0)
-    ds = AugmentImageComponent(ds, lots_of_augmentors)
+    # ds = AugmentImageComponent(ds, lots_of_augmentors)
     ds = PrefetchDataZMQ(ds, 25)
     ds = BatchData(ds, 256)
 else:
