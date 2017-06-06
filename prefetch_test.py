@@ -34,7 +34,7 @@ if CONVERT_LMDB:
 # check the training data
 if EFFICIENT_FLOW:
     db_dir = './'
-    ds = LMDBData(db, shuffle=False)
+    ds = LMDBData(db_dir + 'ILSVRC-train.lmdb', shuffle=False)
     ds = LocallyShuffleData(ds, 50000)
     ds = PrefetchData(ds, 5000, 1)
     ds = LMDBDataPoint(ds)
