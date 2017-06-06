@@ -67,7 +67,7 @@ To Run Pretrained Model:
     ./alexnet-dorefa.py --load alexnet-126.npy --run a.jpg --dorefa 1,2,6
 """
 
-TOTAL_BATCH_SIZE = 1024 
+TOTAL_BATCH_SIZE = 512 
 BATCH_SIZE = None
 
 
