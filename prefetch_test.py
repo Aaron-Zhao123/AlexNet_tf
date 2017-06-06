@@ -33,7 +33,7 @@ if CONVERT_LMDB_TRAIN:
     ds1 = PrefetchDataZMQ(ds0, nr_proc=1)
     dftools.dump_dataflow_to_lmdb(ds1, './ILSVRC-train.lmdb')
 
-if CONVERT_LMDB_TRAIN:
+if CONVERT_LMDB_VAL:
     class RawILSVRC12(DataFlow):
         def __init__(self):
             meta = dataset.ILSVRCMeta()
