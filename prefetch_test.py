@@ -58,6 +58,7 @@ if CONVERT_LMDB_VAL:
 # check the training data
 if EFFICIENT_FLOW:
     db_dir = './'
+    os.path.isdir(db_dir + 'ILSVRC-train.lmdb')
     ds = LMDBData(db_dir + 'ILSVRC-train.lmdb', shuffle=False)
     ds = LocallyShuffleData(ds, 50000)
     ds = PrefetchData(ds, 5000, 1)
